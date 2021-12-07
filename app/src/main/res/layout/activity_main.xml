@@ -7,7 +7,7 @@
     tools:context=".view.MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView2"
+        android:id="@+id/fragmentContainerView"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,13 +15,14 @@
         app:navGraph="@navigation/main_nav" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:itemIconTint="@drawable/selc"
-        app:menu="@menu/main_menu"
-        app:labelVisibilityMode="unlabeled"
+        android:background="#E35334"
         app:itemIconSize="30dp"
-        android:background="#E35334" />
+        app:itemIconTint="@drawable/selc"
+        app:labelVisibilityMode="unlabeled"
+        app:menu="@menu/main_menu" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

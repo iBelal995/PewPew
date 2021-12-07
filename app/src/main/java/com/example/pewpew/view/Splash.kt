@@ -5,6 +5,8 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import com.example.firebaseauthantication.LoginActivity
+import com.example.firebaseauthantication.RegisterActivity
 import com.example.pewpew.R
 
 lateinit var handler: Handler
@@ -21,7 +23,7 @@ class Splash : AppCompatActivity() {
         handler = Handler()
         handler.postDelayed({
             // Delay and Start Activity
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         } , 2000) // here we're delaying to startActivity after 3seconds

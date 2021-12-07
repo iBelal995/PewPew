@@ -10,4 +10,9 @@
         android:name="com.example.pewpew.view.main.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" />
+    <fragment
+        android:id="@+id/cartFrgament"
+        android:name="com.example.pewpew.view.main.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
 </navigation>

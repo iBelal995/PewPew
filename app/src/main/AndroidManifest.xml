@@ -9,12 +9,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PewPew">
         <activity
+            android:name="com.example.firebaseauthantication.LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.firebaseauthantication.RegisterActivity"
+            android:exported="true" />
+        <activity
             android:name=".view.MainActivity"
             android:exported="true" />
         <activity
             android:name=".view.Splash"
-            android:theme="@style/Splash"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
