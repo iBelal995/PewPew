@@ -51,6 +51,8 @@ class LoginActivity : AppCompatActivity() {
                             Toast.makeText(this, task.exception!!.message.toString(), Toast.LENGTH_SHORT).show()
                         }
                     }
+            }else {
+                Toast.makeText(this, "Please Enter the Email & password", Toast.LENGTH_SHORT).show()
             }
         }
     }

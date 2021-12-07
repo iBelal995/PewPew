@@ -54,6 +54,8 @@ class RegisterActivity : AppCompatActivity() {
                             , Toast.LENGTH_SHORT).show()
                     }
                 }
+            }else {
+                Toast.makeText(this, "Please Enter the Email & password", Toast.LENGTH_SHORT).show()
             }
 
 
