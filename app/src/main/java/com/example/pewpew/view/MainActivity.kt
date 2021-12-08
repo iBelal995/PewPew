@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
 
     }
     override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp()
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
     fun setFragment(fr : Fragment){
         val frag = supportFragmentManager.beginTransaction()
