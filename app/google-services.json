@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "648960559339",
+    "project_id": "pew-pew-1e87c",
+    "storage_bucket": "pew-pew-1e87c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:648960559339:android:2225bae9672a678d6056ae",
+        "android_client_info": {
+          "package_name": "com.example.pewpew"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "648960559339-9dlq1qoksj2af548uta135ncqagevs8r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATlLwFEg2bXLBkZpSJFEk8MxXYRSy-Ugg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "648960559339-9dlq1qoksj2af548uta135ncqagevs8r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

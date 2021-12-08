@@ -8,11 +8,13 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.example.pewpew.R
+import com.example.pewpew.util.RegisterValdiation
 import com.example.pewpew.view.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
 class RegisterActivity : AppCompatActivity() {
+    private val validator = RegisterValdiation()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
@@ -38,21 +40,29 @@ class RegisterActivity : AppCompatActivity() {
             if(email.isNotEmpty() && password.isNotEmpty()){
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password).addOnCompleteListener(){
                         task ->
-                    if(task.isSuccessful){
-                        val firebaseUser: FirebaseUser = task.result!!.user!!
-                        Toast.makeText(this,"User Registered Successfully", Toast.LENGTH_LONG).show()
+                    if (validator.emailIsValid(email)) {
+                        if (validator.passwordIsValid(password)) {
+                            if(task.isSuccessful){
+                                val firebaseUser: FirebaseUser = task.result!!.user!!
+                                Toast.makeText(this,"User Registered Successfully", Toast.LENGTH_LONG).show()
 
-                        //Navigate to Main Acitivty
-                        val intent = Intent(this, MainActivity::class.java)
-                        intent.putExtra("UserId", firebaseUser.uid)
-                        intent.putExtra("Email", firebaseUser.email)
-                        startActivity(intent)
-                        finish()
+                                //Navigate to Main Acitivty
+                                val intent = Intent(this, MainActivity::class.java)
+                                intent.putExtra("UserId", firebaseUser.uid)
+                                intent.putExtra("Email", firebaseUser.email)
+                                startActivity(intent)
+                                finish()
 
-                    } else{
-                        Toast.makeText(this, task.exception!!.message.toString()
-                            , Toast.LENGTH_SHORT).show()
-                    }
+                            } else{
+                                Toast.makeText(this, task.exception!!.message.toString()
+                                    , Toast.LENGTH_SHORT).show()
+                            }
+                        } else
+                            Toast.makeText(this, "Make sure your password is strong.", Toast.LENGTH_SHORT).show()
+                    }else{
+                        Toast.makeText(this, "Make sure you typed your email address correctly.", Toast.LENGTH_SHORT).show()}
+
+
                 }
             }else {
                 Toast.makeText(this, "Please Enter the Email & password", Toast.LENGTH_SHORT).show()
