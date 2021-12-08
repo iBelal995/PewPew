@@ -3,6 +3,10 @@ package com.example.pewpew.view
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.widget.Toast
+import androidx.appcompat.widget.PopupMenu
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
@@ -20,7 +24,25 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (Build.VERSION.SDK_INT >= 21) {
+        binding.settingButton.setOnClickListener {
+            val popupMenu: PopupMenu = PopupMenu(this,binding.settingButton)
+            popupMenu.menuInflater.inflate(R.menu.settingmenu,popupMenu.menu)
+            popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
+                when(item.itemId) {
+                    R.id.signout ->
+                        Toast.makeText(this@MainActivity, "You Clicked : " + item.title, Toast.LENGTH_SHORT).show()
+                    R.id.location ->
+                        Toast.makeText(this@MainActivity, "You Clicked : " + item.title, Toast.LENGTH_SHORT).show()
+                    R.id.about ->
+                        Toast.makeText(this@MainActivity, "You Clicked : " + item.title, Toast.LENGTH_SHORT).show()
+                }
+                true
+            })
+            popupMenu.show()
+        }
+
+
+    if (Build.VERSION.SDK_INT >= 21) {
             window.navigationBarColor =
                 this.resources.getColor(R.color.colororange) // this is for the navigation bar color of the android system
         }
@@ -34,5 +56,4 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp()
     }
-
     }

@@ -23,6 +23,18 @@
         app:itemIconSize="30dp"
         app:itemIconTint="@drawable/selc"
         app:labelVisibilityMode="unlabeled"
-        app:menu="@menu/main_menu" />
+        app:menu="@menu/main_menu" >
+
+        <ImageButton
+            android:id="@+id/settingButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center|right"
+            android:layout_marginRight="10dp"
+            android:background="?selectableItemBackgroundBorderless"
+            app:srcCompat="@drawable/ic_baseline_more_vert_24"
+            app:menu="@menu/settingmenu"
+            app:tint="@drawable/selc1" />
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
