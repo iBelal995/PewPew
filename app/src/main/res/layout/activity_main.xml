@@ -2,6 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.MainActivity">
@@ -23,7 +24,7 @@
         app:itemIconSize="30dp"
         app:itemIconTint="@drawable/selc"
         app:labelVisibilityMode="unlabeled"
-        app:menu="@menu/main_menu" >
+        app:menu="@menu/main_menu">
 
         <ImageButton
             android:id="@+id/settingButton"
@@ -32,8 +33,8 @@
             android:layout_gravity="center|right"
             android:layout_marginRight="10dp"
             android:background="?selectableItemBackgroundBorderless"
-            app:srcCompat="@drawable/ic_baseline_more_vert_24"
             app:menu="@menu/settingmenu"
+            app:srcCompat="@drawable/ic_baseline_more_vert_24"
             app:tint="@drawable/selc1" />
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 

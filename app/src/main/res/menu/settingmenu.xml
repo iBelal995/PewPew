@@ -5,9 +5,6 @@
         android:id="@+id/signout"
         android:title="Sign out" />
     <item
-        android:id="@+id/location"
-        android:title="Location" />
-    <item
         android:id="@+id/about"
         android:title="About" />
 </menu>
