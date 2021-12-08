@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
                 when(item.itemId) {
                     R.id.signout ->{
                         FirebaseAuth.getInstance().signOut()
-
+                        Toast.makeText(this@MainActivity, "signed out", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this, LoginActivity::class.java))}
 
                     R.id.about ->{
