@@ -8,8 +8,11 @@ import retrofit2.http.Query
 interface pewpewApi {
 
     @GET("/menu")
-    suspend fun getBurgers(
-    @Query("type") type:String
+    suspend fun getMenu(
     ):Response<List<MenuModelItem>>
 
+    @GET("/menu")
+    suspend fun getMenu(
+        @Query("type") type:String
+    ):Response<List<MenuModelItem>>
 }

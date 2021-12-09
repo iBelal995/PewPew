@@ -8,14 +8,14 @@ import android.os.Handler
 import com.example.firebaseauthantication.LoginActivity
 import com.example.firebaseauthantication.RegisterActivity
 import com.example.pewpew.R
+import com.example.pewpew.repository.ApiServicesRepository
 
 lateinit var handler: Handler
 class Splash : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-
-        setContentView(R.layout.activity_splash)
+        ApiServicesRepository.init(this)
         if (Build.VERSION.SDK_INT >= 21) {
             window.navigationBarColor =
                 this.resources.getColor(R.color.colororange) // this is for the navigation bar color of the android system
