@@ -1,15 +1,19 @@
 package com.example.pewpew.view.main
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import com.example.pewpew.databinding.FragmentCartBinding
+import com.example.pewpew.R
+import com.example.pewpew.databinding.FragmentAllBinding
+import com.example.pewpew.databinding.FragmentBurgersBinding
+import com.example.pewpew.databinding.FragmentSideOrderBinding
 
 
-class CartFragment : Fragment() {
-    private lateinit var binding: FragmentCartBinding
+class SideOrderFragment : Fragment() {
+    private lateinit var binding: FragmentSideOrderBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -19,13 +23,9 @@ class CartFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentCartBinding.inflate(inflater, container, false)
+        binding = FragmentSideOrderBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
         return binding.root
-    }
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
     }
 
 }

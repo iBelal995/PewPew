@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="5dp"
+    android:layout_height="match_parent"
     android:background="@drawable/splash"
     android:backgroundTint="#E6FFFFFF"
     android:backgroundTintMode="src_over"
@@ -13,7 +12,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,7 +25,8 @@
                 android:layout_height="wrap_content"
                 android:text="Categories"
                 android:textColor="#000000"
-                android:textSize="30sp" />
+                android:textSize="30sp"
+                android:textStyle="italic" />
 
             <View
                 android:id="@+id/divider"
@@ -127,7 +127,8 @@
                 android:layout_marginTop="5dp"
                 android:text="Promotion"
                 android:textColor="#000000"
-                android:textSize="30sp" />
+                android:textSize="30sp"
+                android:textStyle="italic" />
 
             <View
                 android:id="@+id/divider3"
@@ -165,7 +166,8 @@
                 android:layout_marginTop="5dp"
                 android:text="Popular Burgers"
                 android:textColor="#000000"
-                android:textSize="30sp" />
+                android:textSize="30sp"
+                android:textStyle="italic" />
 
             <View
                 android:id="@+id/divider4"

@@ -3,18 +3,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="5dp"
     android:background="@drawable/splash"
     android:backgroundTint="#E6FFFFFF"
     android:backgroundTintMode="src_over"
     android:padding="10dp"
-    tools:context=".view.main.CartFragment">
+    tools:context=".view.main.SideOrderFragment">
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Your Orders"
+        android:text="@string/sideorder"
         android:textColor="#000000"
         android:textSize="30sp"
         android:textStyle="italic" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewSideOrder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_marginTop="40dp" />
 </FrameLayout>

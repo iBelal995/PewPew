@@ -1,9 +1,9 @@
-package com.example.pewpew.model
+package com.example.pewpew.model.menumodel
 
 
 import com.google.gson.annotations.SerializedName
 
-data class ItemsModel(
+data class MenuModelItem(
     @SerializedName("Description")
     val description: String,
     @SerializedName("id")
@@ -13,5 +13,7 @@ data class ItemsModel(
     @SerializedName("name")
     val name: String,
     @SerializedName("price")
-    val price: Int
+    val price: Int,
+    @SerializedName("type")
+    val type: String
 )

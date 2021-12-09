@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
@@ -11,11 +12,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.firebaseauthantication.LoginActivity
 import com.example.pewpew.R
 import com.example.pewpew.databinding.ActivityMainBinding
-import com.example.pewpew.view.main.AboutFragment
+import com.example.pewpew.view.main.*
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
@@ -44,11 +46,16 @@ class MainActivity : AppCompatActivity() {
                     startActivity(Intent(this, LoginActivity::class.java))}
 
                     R.id.about ->{
-
-
-                        navController.navigate(R.id.action_mainFragment_to_aboutFragment)
+                        val fragment = navHostFragment.childFragmentManager.primaryNavigationFragment
+                        when(fragment){
+                            is MainFragment ->  navController.navigate(R.id.action_mainFragment_to_aboutFragment)
+                            is CartFragment ->  navController.navigate(R.id.action_cartFrgament_to_about)
+                            is SideOrderFragment -> navController.navigate(R.id.action_sideOrderFragment_to_about)
+                            is AllFragment -> navController.navigate(R.id.action_allFragment_to_about)
+                            is BurgersFragment -> navController.navigate(R.id.action_burgersFragment_to_about)
+                        }
+                        Log.d("belal", "onCreate: ${fragment.toString()}")
                     }
-
                 }
                 true
             })

@@ -13,6 +13,15 @@
         <action
             android:id="@+id/action_mainFragment_to_aboutFragment"
             app:destination="@id/about" />
+        <action
+            android:id="@+id/action_mainFragment_to_burgersFragment"
+            app:destination="@id/burgersFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_allFragment"
+            app:destination="@id/allFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_sideOrderFragment"
+            app:destination="@id/sideOrderFragment" />
     </fragment>
     <fragment
         android:id="@+id/cartFrgament"
@@ -28,4 +37,31 @@
         android:name="com.example.pewpew.view.main.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/allFragment"
+        android:name="com.example.pewpew.view.main.AllFragment"
+        android:label="fragment_all"
+        tools:layout="@layout/fragment_all" >
+        <action
+            android:id="@+id/action_allFragment_to_about"
+            app:destination="@id/about" />
+    </fragment>
+    <fragment
+        android:id="@+id/sideOrderFragment"
+        android:name="com.example.pewpew.view.main.SideOrderFragment"
+        android:label="fragment_side_order"
+        tools:layout="@layout/fragment_side_order" >
+        <action
+            android:id="@+id/action_sideOrderFragment_to_about"
+            app:destination="@id/about" />
+    </fragment>
+    <fragment
+        android:id="@+id/burgersFragment"
+        android:name="com.example.pewpew.view.main.BurgersFragment"
+        android:label="fragment_burgers"
+        tools:layout="@layout/fragment_burgers" >
+        <action
+            android:id="@+id/action_burgersFragment_to_about"
+            app:destination="@id/about" />
+    </fragment>
 </navigation>
