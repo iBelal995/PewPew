@@ -1,4 +1,4 @@
-package com.example.pewpew.view.main.Adapters
+package com.example.pewpew.view.main.Adaptersimport
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -6,20 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pewpew.R
 import com.example.pewpew.model.menumodel.MenuModelItem
-import com.example.pewpew.view.main.AllFragmentViewModel
+import com.example.pewpew.view.main.Adapters.TAG
+import com.example.pewpew.view.main.BurgersFragmentViewModel
 import com.squareup.picasso.Picasso
 
-const val TAG = "ADAPTERALL"
-
-class AllRecyclerVireAdapter(val viewModel: AllFragmentViewModel) :
-    RecyclerView.Adapter<AllRecyclerVireAdapter.AllViewHolder>() {
+class BurgersRecyclerViewAdapter(val viewModel: BurgersFragmentViewModel) :
+    RecyclerView.Adapter<BurgersRecyclerViewAdapter.BurgersViewHolder>() {
     val DIFF_CALL_BACK = object : DiffUtil.ItemCallback<MenuModelItem>() {
         override fun areItemsTheSame(oldItem: MenuModelItem, newItem: MenuModelItem): Boolean {
             return oldItem.id == newItem.id
@@ -30,12 +28,11 @@ class AllRecyclerVireAdapter(val viewModel: AllFragmentViewModel) :
         }
     }
     private val differ = AsyncListDiffer(this, DIFF_CALL_BACK)
-
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): AllRecyclerVireAdapter.AllViewHolder {
-        return AllViewHolder(
+    ): BurgersRecyclerViewAdapter.BurgersViewHolder {
+        return BurgersViewHolder(
             LayoutInflater.from(parent.context).inflate(
                 R.layout.item_layout_menu,
                 parent,
@@ -44,7 +41,7 @@ class AllRecyclerVireAdapter(val viewModel: AllFragmentViewModel) :
         )
     }
 
-    override fun onBindViewHolder(holder: AllViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BurgersViewHolder, position: Int) {
         val item = differ.currentList[position]
         Log.d(TAG, item.name)
         var count = 1
@@ -69,8 +66,6 @@ class AllRecyclerVireAdapter(val viewModel: AllFragmentViewModel) :
             }
 
         }
-
-
     }
 
     override fun getItemCount(): Int {
@@ -81,7 +76,7 @@ class AllRecyclerVireAdapter(val viewModel: AllFragmentViewModel) :
         differ.submitList(list)
     }
 
-    class AllViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class BurgersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTextView: TextView = itemView.findViewById(R.id.titleTextView)
         val priceTextView: TextView = itemView.findViewById(R.id.priceTextView)
         val itemImageView: ImageView = itemView.findViewById(R.id.itemimageView)

@@ -27,4 +27,6 @@
     <string name="sideorder">Side Order</string>
     <string name="addButton">Add to Cart</string>
     <string name="all1">All Menu</string>
+    <string name="burgermenu">Burgers Menu</string>
+    <string name="sideordermenu">Side Order Menu</string>
 </resources>
