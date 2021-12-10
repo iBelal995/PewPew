@@ -18,6 +18,7 @@ private const val TAG = "BurgersFragment"
 class BurgersFragment : Fragment() {
     private var menuList = listOf<MenuModelItem>()
     private val burgersViewModel: BurgersFragmentViewModel by activityViewModels()
+    private val dViewModel: DescriptionViewModel by activityViewModels()
     private lateinit var burgersFragmentAdapter: BurgersRecyclerViewAdapter
     private lateinit var binding: FragmentBurgersBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +38,7 @@ class BurgersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observers()
-        burgersFragmentAdapter = BurgersRecyclerViewAdapter(burgersViewModel)
+        burgersFragmentAdapter = BurgersRecyclerViewAdapter(burgersViewModel,dViewModel)
         binding.recyclerViewBurgers.adapter= burgersFragmentAdapter
         burgersViewModel.callMenu()
     }

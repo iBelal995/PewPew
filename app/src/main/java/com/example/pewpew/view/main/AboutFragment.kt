@@ -26,8 +26,8 @@ class AboutFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val userId = FirebaseAuth.getInstance().currentUser!!.uid
-        val emailAddress = FirebaseAuth.getInstance().currentUser!!.email
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        val emailAddress = FirebaseAuth.getInstance().currentUser?.email
         binding.userIdTextview.text = "User ID: ${userId}"
         binding.emailAddressTextview.text = "User Email: ${emailAddress }"
         binding.locationButton.setOnClickListener {

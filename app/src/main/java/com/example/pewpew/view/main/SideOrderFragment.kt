@@ -22,12 +22,11 @@ class SideOrderFragment : Fragment() {
     private lateinit var binding: FragmentSideOrderBinding
     private var menuList = listOf<MenuModelItem>()
     private val sideOrderViewModel: SideOrderFragmentViewModel by activityViewModels()
+    private val dViewModel: DescriptionViewModel by activityViewModels()
     private lateinit var sideOrderFragmentAdapter: SideOrderRecyclerViewAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,10 +38,11 @@ class SideOrderFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observers()
-        sideOrderFragmentAdapter = SideOrderRecyclerViewAdapter(sideOrderViewModel)
+        sideOrderFragmentAdapter = SideOrderRecyclerViewAdapter(sideOrderViewModel,dViewModel)
         binding.recyclerViewSideOrder.adapter= sideOrderFragmentAdapter
         sideOrderViewModel.callMenu()
     }
+
     fun observers(){
         sideOrderViewModel.menuLiveData.observe(viewLifecycleOwner,{
             binding.progressBarSideOrder.animate().alpha(0f).duration=1000
@@ -57,9 +57,7 @@ class SideOrderFragment : Fragment() {
                 Toast.makeText(requireActivity(), it, Toast.LENGTH_LONG).show()
                 Log.d(TAG,it)
                 sideOrderViewModel.menuErrorLiveData.postValue(null)
-
             }
         })
-
     }
 }

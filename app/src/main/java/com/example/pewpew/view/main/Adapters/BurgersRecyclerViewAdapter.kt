@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -14,9 +15,10 @@ import com.example.pewpew.R
 import com.example.pewpew.model.menumodel.MenuModelItem
 import com.example.pewpew.view.main.Adapters.TAG
 import com.example.pewpew.view.main.BurgersFragmentViewModel
+import com.example.pewpew.view.main.DescriptionViewModel
 import com.squareup.picasso.Picasso
 
-class BurgersRecyclerViewAdapter(val viewModel: BurgersFragmentViewModel) :
+class BurgersRecyclerViewAdapter(val viewModel: BurgersFragmentViewModel, val dviewModel: DescriptionViewModel) :
     RecyclerView.Adapter<BurgersRecyclerViewAdapter.BurgersViewHolder>() {
     val DIFF_CALL_BACK = object : DiffUtil.ItemCallback<MenuModelItem>() {
         override fun areItemsTheSame(oldItem: MenuModelItem, newItem: MenuModelItem): Boolean {
@@ -50,7 +52,10 @@ class BurgersRecyclerViewAdapter(val viewModel: BurgersFragmentViewModel) :
         holder.addButton.setOnClickListener {
         }
         Picasso.get().load(item.image).into(holder.itemImageView)
-
+        holder.itemImageView.setOnClickListener {
+            dviewModel.selectedItemId.postValue(item)
+            it.findNavController().navigate(R.id.action_burgersFragment_to_descriptionFragment)
+        }
 
         holder.quantity.text = count.toString()
         holder.increaseButton.setOnClickListener {

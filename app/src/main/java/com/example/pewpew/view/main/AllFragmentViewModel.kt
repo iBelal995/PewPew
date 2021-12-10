@@ -17,7 +17,7 @@ class AllFragmentViewModel: ViewModel() {
 
     val menuLiveData = MutableLiveData<List<MenuModelItem>>()
     val menuErrorLiveData = MutableLiveData<String>()
-
+    var selectedItemId = MutableLiveData<MenuModelItem>()
     fun callMenu(){
         viewModelScope.launch(Dispatchers.IO) {
             try {

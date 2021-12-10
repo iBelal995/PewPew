@@ -7,16 +7,18 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pewpew.R
 import com.example.pewpew.model.menumodel.MenuModelItem
 import com.example.pewpew.view.main.Adapters.TAG
+import com.example.pewpew.view.main.DescriptionViewModel
 import com.example.pewpew.view.main.SideOrderFragmentViewModel
 import com.squareup.picasso.Picasso
 
-class SideOrderRecyclerViewAdapter(val viewModel: SideOrderFragmentViewModel) :
+class SideOrderRecyclerViewAdapter(val viewModel: SideOrderFragmentViewModel, val dviewModel: DescriptionViewModel) :
     RecyclerView.Adapter<SideOrderRecyclerViewAdapter.SideOrderViewHolder>() {
     val DIFF_CALL_BACK = object : DiffUtil.ItemCallback<MenuModelItem>() {
         override fun areItemsTheSame(oldItem: MenuModelItem, newItem: MenuModelItem): Boolean {
@@ -50,7 +52,10 @@ class SideOrderRecyclerViewAdapter(val viewModel: SideOrderFragmentViewModel) :
         holder.addButton.setOnClickListener {
         }
         Picasso.get().load(item.image).into(holder.itemImageView)
-
+        holder.itemImageView.setOnClickListener {
+            dviewModel.selectedItemId.postValue(item)
+            it.findNavController().navigate(R.id.action_sideOrderFragment_to_descriptionFragment)
+        }
 
         holder.quantity.text = count.toString()
         holder.increaseButton.setOnClickListener {

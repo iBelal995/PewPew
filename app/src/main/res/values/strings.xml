@@ -31,4 +31,5 @@
     <string name="sideordermenu">Side Order Menu</string>
     <string name="createaccount">Create account</string>
     <string name="forgetpassword">Can\'t remember your password?</string>
+    <string name="description">Description</string>
 </resources>

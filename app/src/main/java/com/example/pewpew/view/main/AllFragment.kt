@@ -19,6 +19,7 @@ class AllFragment : Fragment() {
     private lateinit var binding: FragmentAllBinding
     private var menuList = listOf<MenuModelItem>()
     private val allViewModel: AllFragmentViewModel by activityViewModels()
+    private val dViewModel: DescriptionViewModel by activityViewModels()
     private lateinit var allFragmentAdapter: AllRecyclerVireAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +40,7 @@ class AllFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observers()
-        allFragmentAdapter = AllRecyclerVireAdapter(allViewModel)
+        allFragmentAdapter = AllRecyclerVireAdapter(allViewModel,dViewModel)
         binding.recyclerViewAll.adapter= allFragmentAdapter
         allViewModel.callMenu()
 

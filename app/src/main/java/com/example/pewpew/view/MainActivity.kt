@@ -1,25 +1,26 @@
 package com.example.pewpew.view
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.firebaseauthantication.LoginActivity
+import com.example.firebaseauthantication.SHARED_PREF_FILE
 import com.example.pewpew.R
 import com.example.pewpew.databinding.ActivityMainBinding
 import com.example.pewpew.view.main.*
 import com.google.firebase.auth.FirebaseAuth
 
+private lateinit var sharedPref: SharedPreferences
+private lateinit var sharedPrefEditor: SharedPreferences.Editor
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -41,9 +42,16 @@ class MainActivity : AppCompatActivity() {
             popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
                 when(item.itemId) {
                     R.id.signout ->{
+                        sharedPref = this.getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
+                        sharedPrefEditor = sharedPref.edit()
+                        sharedPrefEditor.putBoolean("state",false)
+                        sharedPrefEditor.commit()
+
                         FirebaseAuth.getInstance().signOut()
                         Toast.makeText(this@MainActivity, "signed out", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, LoginActivity::class.java))}
+                    startActivity(Intent(this, LoginActivity::class.java))
+                    finish()
+                    }
 
                     R.id.about ->{
                         val fragment = navHostFragment.childFragmentManager.primaryNavigationFragment
@@ -74,9 +82,5 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
-    fun setFragment(fr : Fragment){
-        val frag = supportFragmentManager.beginTransaction()
-        frag.replace(R.id.fragment,fr)
-        frag.commit()
-    }
+
     }

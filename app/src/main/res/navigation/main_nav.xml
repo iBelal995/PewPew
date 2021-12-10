@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_cartFrgament_to_about"
             app:destination="@id/about" />
+        <action
+            android:id="@+id/action_cartFrgament_to_descriptionFragment"
+            app:destination="@id/descriptionFragment" />
     </fragment>
     <fragment
         android:id="@+id/about"
@@ -45,6 +48,9 @@
         <action
             android:id="@+id/action_allFragment_to_about"
             app:destination="@id/about" />
+        <action
+            android:id="@+id/action_allFragment_to_descriptionFragment"
+            app:destination="@id/descriptionFragment" />
     </fragment>
     <fragment
         android:id="@+id/sideOrderFragment"
@@ -54,6 +60,9 @@
         <action
             android:id="@+id/action_sideOrderFragment_to_about"
             app:destination="@id/about" />
+        <action
+            android:id="@+id/action_sideOrderFragment_to_descriptionFragment"
+            app:destination="@id/descriptionFragment" />
     </fragment>
     <fragment
         android:id="@+id/burgersFragment"
@@ -63,5 +72,13 @@
         <action
             android:id="@+id/action_burgersFragment_to_about"
             app:destination="@id/about" />
+        <action
+            android:id="@+id/action_burgersFragment_to_descriptionFragment"
+            app:destination="@id/descriptionFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/descriptionFragment"
+        android:name="com.example.pewpew.view.main.DescriptionFragment"
+        android:label="fragment_description"
+        tools:layout="@layout/fragment_description" />
 </navigation>

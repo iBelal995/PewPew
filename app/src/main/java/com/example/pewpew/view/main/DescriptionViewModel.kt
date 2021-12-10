@@ -11,18 +11,19 @@ import kotlinx.coroutines.launch
 import java.lang.Exception
 
 
-private const val TAG = "SideOrderFragment"
-class SideOrderFragmentViewModel: ViewModel() {
+private const val TAG = "DiscriptionViewModel"
+class DescriptionViewModel : ViewModel() {
     private val apiService = ApiServicesRepository.get()
 
     val menuLiveData = MutableLiveData<List<MenuModelItem>>()
     val menuErrorLiveData = MutableLiveData<String>()
     var selectedItemId = MutableLiveData<MenuModelItem>()
+
     fun callMenu(){
         viewModelScope.launch(Dispatchers.IO) {
             try {
 
-                val response = apiService.getMenu("sideorder")
+                val response = apiService.getMenu()
                 if(response.isSuccessful){
                     response.body()?.run {
                         Log.d(TAG,response.body().toString())

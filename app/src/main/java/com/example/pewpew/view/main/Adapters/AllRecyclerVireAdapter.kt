@@ -8,17 +8,19 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pewpew.R
 import com.example.pewpew.model.menumodel.MenuModelItem
 import com.example.pewpew.view.main.AllFragmentViewModel
+import com.example.pewpew.view.main.DescriptionViewModel
 import com.squareup.picasso.Picasso
 
 const val TAG = "ADAPTERALL"
 
-class AllRecyclerVireAdapter(val viewModel: AllFragmentViewModel) :
+class AllRecyclerVireAdapter(val viewModel: AllFragmentViewModel, val dviewModel: DescriptionViewModel) :
     RecyclerView.Adapter<AllRecyclerVireAdapter.AllViewHolder>() {
     val DIFF_CALL_BACK = object : DiffUtil.ItemCallback<MenuModelItem>() {
         override fun areItemsTheSame(oldItem: MenuModelItem, newItem: MenuModelItem): Boolean {
@@ -53,7 +55,10 @@ class AllRecyclerVireAdapter(val viewModel: AllFragmentViewModel) :
         holder.addButton.setOnClickListener {
         }
         Picasso.get().load(item.image).into(holder.itemImageView)
-
+        holder.itemImageView.setOnClickListener {
+            dviewModel.selectedItemId.postValue(item)
+            it.findNavController().navigate(R.id.action_allFragment_to_descriptionFragment)
+        }
 
         holder.quantity.text = count.toString()
         holder.increaseButton.setOnClickListener {
