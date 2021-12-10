@@ -1,6 +1,8 @@
 package com.example.firebaseauthantication
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -11,6 +13,9 @@ import com.example.pewpew.R
 import com.example.pewpew.view.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 
+
+//private lateinit var sharedPref: SharedPreferences
+//private lateinit var sharedPrefEditor: SharedPreferences.Editor
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,12 +30,11 @@ class LoginActivity : AppCompatActivity() {
 
 
 
-
-
         RegisterTextView.setOnClickListener(){
             startActivity(Intent(this, RegisterActivity:: class.java))
             finish()
         }
+
 
         loginButton.setOnClickListener(){
             val email: String = emailEditText.text.toString()
@@ -45,6 +49,12 @@ class LoginActivity : AppCompatActivity() {
                             val intent = Intent(this,MainActivity::class.java)
                             intent.putExtra("UserId",FirebaseAuth.getInstance().currentUser!!.uid)
                             intent.putExtra("Email", FirebaseAuth.getInstance().currentUser!!.email)
+
+//                            sharedPref = this.getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
+//                            sharedPrefEditor = sharedPref.edit()
+//                            sharedPrefEditor.putString("firebasekey",FirebaseAuth.getInstance().currentUser!!.uid)
+//                            sharedPrefEditor.commit()
+
                             startActivity(intent)
                             finish()
                         } else{

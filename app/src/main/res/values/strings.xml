@@ -29,4 +29,6 @@
     <string name="all1">All Menu</string>
     <string name="burgermenu">Burgers Menu</string>
     <string name="sideordermenu">Side Order Menu</string>
+    <string name="createaccount">Create account</string>
+    <string name="forgetpassword">Can\'t remember your password?</string>
 </resources>

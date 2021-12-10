@@ -41,7 +41,7 @@
             android:id="@+id/emailAddress_EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:ems="10"
             android:hint="Email Address"
             android:inputType="textPersonName"
@@ -55,6 +55,15 @@
             android:hint="Password"
             android:inputType="textPassword" />
 
+        <TextView
+            android:id="@+id/forgetpassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/forgetpassword"
+            android:textColor="@color/colororange" />
+
         <Button
             android:id="@+id/login_button"
             android:layout_width="match_parent"
@@ -67,7 +76,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="10dp"
             android:gravity="center"
-            android:text="@string/dont_have_an_account" />
+            android:text="@string/createaccount"
+            android:textColor="@color/colororange"
+            android:textSize="16sp"
+            android:textStyle="bold" />
     </LinearLayout>
 </FrameLayout>
