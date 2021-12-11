@@ -32,4 +32,7 @@
     <string name="createaccount">Create account</string>
     <string name="forgetpassword">Can\'t remember your password?</string>
     <string name="description">Description</string>
+    <string name="cpass">Confirm Password</string>
+    <string name="Forgerpass">Reset Your Password</string>
+    <string name="respass">Reset Password</string>
 </resources>

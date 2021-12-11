@@ -20,10 +20,11 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
         window.navigationBarColor =
             this.resources.getColor(R.color.colororange) // this is for the navigation bar color of the android system
-
+        
 
         val emailAddress: EditText = findViewById(R.id.emailAddress_EditText)
         val password: EditText = findViewById(R.id.password_EditText)
+        val cpassword: EditText = findViewById(R.id.confirm_password_EditText)
         val registerButton: Button = findViewById(R.id.register_button)
         val logintextview: TextView = findViewById(R.id.login_TextView)
 
@@ -36,10 +37,12 @@ class RegisterActivity : AppCompatActivity() {
 
             val email:String = emailAddress.text.toString()
             val password:String = password.text.toString()
+            val cpassword:String = cpassword.text.toString()
 
             if(email.isNotEmpty() && password.isNotEmpty()){
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password).addOnCompleteListener(){
                         task ->
+                    if (password == cpassword){
                     if (validator.emailIsValid(email)) {
                         if (validator.passwordIsValid(password)) {
                             if(task.isSuccessful){
@@ -52,7 +55,6 @@ class RegisterActivity : AppCompatActivity() {
                                 intent.putExtra("Email", firebaseUser.email)
                                 startActivity(intent)
                                 finish()
-
                             } else{
                                 Toast.makeText(this, task.exception!!.message.toString()
                                     , Toast.LENGTH_SHORT).show()
@@ -61,14 +63,14 @@ class RegisterActivity : AppCompatActivity() {
                             Toast.makeText(this, "Make sure your password is strong.", Toast.LENGTH_SHORT).show()
                     }else{
                         Toast.makeText(this, "Make sure you typed your email address correctly.", Toast.LENGTH_SHORT).show()}
-
-
+                }else
+                        Toast.makeText(this, "Password and confirm password don't match", Toast.LENGTH_SHORT).show()
                 }
             }else {
                 Toast.makeText(this, "Please Enter the Email & password", Toast.LENGTH_SHORT).show()
             }
-
-
         }
+
+
     }
 }

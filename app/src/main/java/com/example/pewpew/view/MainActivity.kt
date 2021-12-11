@@ -1,13 +1,18 @@
 package com.example.pewpew.view
 
+import android.content.ClipData
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.widget.Button
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.view.menu.MenuView
 import androidx.appcompat.widget.PopupMenu
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -18,6 +23,7 @@ import com.example.pewpew.R
 import com.example.pewpew.databinding.ActivityMainBinding
 import com.example.pewpew.view.main.*
 import com.google.firebase.auth.FirebaseAuth
+import androidx.appcompat.view.menu.MenuView.ItemView as AndroidxAppcompatViewMenuMenuViewItemView
 
 private lateinit var sharedPref: SharedPreferences
 private lateinit var sharedPrefEditor: SharedPreferences.Editor
@@ -32,9 +38,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController
-
         NavigationUI.setupWithNavController(binding.bottomNavView,navController)
-
 
         binding.settingButton.setOnClickListener {
             val popupMenu: PopupMenu = PopupMenu(this,binding.settingButton)
@@ -44,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                     R.id.signout ->{
                         sharedPref = this.getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
                         sharedPrefEditor = sharedPref.edit()
-                        sharedPrefEditor.putBoolean("state",false)
+                        sharedPrefEditor.putBoolean("state", false)
                         sharedPrefEditor.commit()
 
                         FirebaseAuth.getInstance().signOut()

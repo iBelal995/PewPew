@@ -16,7 +16,6 @@ class Splash : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         ApiServicesRepository.init(this)
-
         if (Build.VERSION.SDK_INT >= 21) {
             window.navigationBarColor =
                 this.resources.getColor(R.color.colororange) // this is for the navigation bar color of the android system
@@ -29,8 +28,7 @@ class Splash : AppCompatActivity() {
                 startActivity(intent)
                 finish()
 
-
-        } , 2000) // here we're delaying to startActivity after 3seconds
+        } , 500) // here we're delaying to startActivity after 3seconds
     }
 
 }
