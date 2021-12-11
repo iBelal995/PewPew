@@ -51,7 +51,7 @@ class ForgetPasswordFragment : Fragment() {
         Firebase.auth.sendPasswordResetEmail(username.text.toString())
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(requireActivity(), "Reset password have been sent to your email", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireActivity(), "Reset password link have been sent to your email", Toast.LENGTH_SHORT).show()
                     val intent = Intent(requireActivity(), LoginActivity::class.java)
                     startActivity(intent)
                 }
