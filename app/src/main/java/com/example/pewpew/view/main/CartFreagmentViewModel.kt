@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 private const val TAG = "CartViewModel"
 
 class CartFreagmentViewModel:ViewModel() {
-    val CartLiveData = MutableLiveData<CartModel>()
+    val CartLiveData = MutableLiveData<List<CartModel>>()
     val CartLiveDataS = MutableLiveData<String>()
     val CartErrorLiveData = MutableLiveData<String>()
     private val apiService = ApiServicesRepository.get()
@@ -70,7 +70,7 @@ class CartFreagmentViewModel:ViewModel() {
                 if (response.isSuccessful) {
                     response.body()?.run {
                         Log.d(TAG, response.body().toString())
-                        CartLiveData.postValue(this)
+                        CartLiveData.postValue(listOf(this))
                     }
                 } else {
                     Log.d(TAG, response.message())

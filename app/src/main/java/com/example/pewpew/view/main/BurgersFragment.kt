@@ -38,7 +38,7 @@ class BurgersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observers()
-        burgersFragmentAdapter = BurgersRecyclerViewAdapter(burgersViewModel,dViewModel)
+        burgersFragmentAdapter = BurgersRecyclerViewAdapter(burgersViewModel,dViewModel,requireContext())
         binding.recyclerViewBurgers.adapter= burgersFragmentAdapter
         burgersViewModel.callMenu()
     }

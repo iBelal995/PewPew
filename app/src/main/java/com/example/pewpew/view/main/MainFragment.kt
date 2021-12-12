@@ -38,6 +38,18 @@ class MainFragment : Fragment() {
         binding.SideOrder.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_sideOrderFragment)
         }
+        binding.promotionImage.setOnClickListener {
+
+        }
+        binding.littleoldfashImage.setOnClickListener {
+
+        }
+        binding.oldfashburgerImage.setOnClickListener {
+
+        }
+        binding.pewpewburgerimage.setOnClickListener {
+
+        }
     }
 
 }

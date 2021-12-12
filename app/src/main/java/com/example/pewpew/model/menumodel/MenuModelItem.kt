@@ -15,5 +15,5 @@ data class MenuModelItem(
     @SerializedName("price")
     val price: Int,
     @SerializedName("type")
-    val type: String
+    val type: String,
 )

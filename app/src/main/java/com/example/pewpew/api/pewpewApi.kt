@@ -25,7 +25,7 @@ interface pewpewApi {
     @GET("/cart")
     suspend fun getCart(
         @Query("userid") usreid:String
-    ):Response<CartModel>
+    ):Response<List<CartModel>>
 
     @DELETE("/cart/{id}")
     suspend fun removeFromCart(

@@ -6,6 +6,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -13,9 +16,12 @@ import com.example.pewpew.R
 import com.example.pewpew.model.CartModel
 import com.example.pewpew.model.menumodel.MenuModelItem
 import com.example.pewpew.view.main.CartFreagmentViewModel
+import com.squareup.picasso.Picasso
+import okhttp3.internal.notify
 
 class CartRecyclerViewAdapter(val viewModel: CartFreagmentViewModel) :
     RecyclerView.Adapter<CartRecyclerViewAdapter.CartViewHolder>() {
+    lateinit var itemcart:CartModel
     val DIFF_CALL_BACK = object : DiffUtil.ItemCallback<CartModel>() {
         override fun areItemsTheSame(oldItem: CartModel, newItem: CartModel): Boolean {
             return oldItem.id == newItem.id
@@ -41,7 +47,44 @@ class CartRecyclerViewAdapter(val viewModel: CartFreagmentViewModel) :
 
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
         val item = differ.currentList[position]
-        TODO("bind view with data")
+        var count = item.count
+        var orignalprice = item.price/count
+        holder.titleTextView.text = item.name
+        holder.priceTextView.text = "${item.price} SR"
+        Picasso.get().load(item.image).into(holder.itemImageView)
+        holder.quantity.text = item.count.toString()
+        holder.deleteButton.setOnClickListener {
+
+            val alertDialog = AlertDialog
+                .Builder(holder.itemView.context,R.style.AlertDialogTheme)
+                .setTitle("Delete ${item.name.uppercase()}")
+                .setMessage("Are you sure you want to delete this item?")
+            alertDialog.setPositiveButton("Yes") { _, _ ->
+
+                viewModel.removeFromCart(item.id)
+
+            }
+        alertDialog.setNegativeButton("No") { dialog, _ ->
+                dialog.cancel()
+            }
+            alertDialog.create().show()
+
+        }
+        holder.increaseButton.setOnClickListener {
+            count++
+            holder.quantity.text = count.toString()
+            holder.priceTextView.text = "${orignalprice*count } SR"
+
+        }
+        holder.decreaseButton.setOnClickListener {
+            if (count > 1) {
+                count--
+                holder.quantity.text = count.toString()
+
+                holder.priceTextView.text = "${orignalprice*count } SR"
+            }
+
+        }
     }
 
     override fun getItemCount(): Int {

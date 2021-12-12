@@ -40,7 +40,7 @@ class AllFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observers()
-        allFragmentAdapter = AllRecyclerVireAdapter(allViewModel,dViewModel)
+        allFragmentAdapter = AllRecyclerVireAdapter(allViewModel,dViewModel,requireContext())
         binding.recyclerViewAll.adapter= allFragmentAdapter
         allViewModel.callMenu()
 

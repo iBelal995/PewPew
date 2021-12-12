@@ -15,5 +15,8 @@ data class CartModel(
     @SerializedName("price")
     val price: Int,
     @SerializedName("userid")
-    val userid: String
+    val userid: String,
+    @SerializedName("count")
+    val count: Int
+
 )
