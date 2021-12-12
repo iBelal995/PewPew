@@ -11,8 +11,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pewpew.R
+import com.example.pewpew.view.ForgetPasswordActivity
 import com.example.pewpew.view.MainActivity
-import com.example.pewpew.view.main.ForgetPasswordFragment
 import com.google.firebase.auth.FirebaseAuth
 
 private lateinit var sharedPref: SharedPreferences
@@ -38,7 +38,7 @@ class LoginActivity : AppCompatActivity() {
 
         RegisterTextView.setOnClickListener() {
             startActivity(Intent(this, RegisterActivity::class.java))
-            finish()
+
         }
 
         sharedPref = this.getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
@@ -82,13 +82,10 @@ class LoginActivity : AppCompatActivity() {
             }
         }
         resetpassword.setOnClickListener() {
-            if(savedInstanceState == null) { // initial transaction should be wrapped like this
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.login_page, ForgetPasswordFragment())
-                    .commitAllowingStateLoss()
-            }
+            val intent = Intent(this, ForgetPasswordActivity::class.java)
+                startActivity(intent)
+        }
 
         }
     }
 
-}
