@@ -35,4 +35,5 @@
     <string name="cpass">Confirm Password</string>
     <string name="Forgerpass">Reset Your Password</string>
     <string name="respass">Reset Password</string>
+    <string name="yourorders">Your Orders</string>
 </resources>

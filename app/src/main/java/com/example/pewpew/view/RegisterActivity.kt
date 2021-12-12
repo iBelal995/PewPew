@@ -50,7 +50,7 @@ class RegisterActivity : AppCompatActivity() {
                                 Toast.makeText(this,"User Registered Successfully", Toast.LENGTH_LONG).show()
 
                                 //Navigate to Main Acitivty
-                                val intent = Intent(this, MainActivity::class.java)
+                                val intent = Intent(this, LoginActivity::class.java)
                                 intent.putExtra("UserId", firebaseUser.uid)
                                 intent.putExtra("Email", firebaseUser.email)
                                 startActivity(intent)

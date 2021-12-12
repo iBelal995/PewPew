@@ -2,6 +2,7 @@ package com.example.pewpew.repository
 
 import android.content.Context
 import com.example.pewpew.api.pewpewApi
+import com.example.pewpew.model.CartModel
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.Exception
@@ -19,6 +20,10 @@ class ApiServicesRepository(context: Context) {
     suspend fun getMenu() = retrofitApi.getMenu()
     suspend fun getMenu(type:String) = retrofitApi.getMenu(type)
 
+    suspend fun getCart(userid:String) = retrofitApi.getCart(userid)
+    suspend fun addToCart(item: CartModel) = retrofitApi.addToCart(item)
+    suspend fun removeFromCart(id:String) = retrofitApi.removeFromCart(id)
+    suspend fun updateCart(id:String,item:CartModel) = retrofitApi.updateCart(id,item)
 
 
     companion object{
