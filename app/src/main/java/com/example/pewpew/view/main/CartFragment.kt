@@ -1,25 +1,40 @@
 package com.example.pewpew.view.main
 
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.content.Intent
+import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RemoteViews
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import com.example.firebaseauthantication.LoginActivity
+import com.example.pewpew.R
 import com.example.pewpew.databinding.FragmentCartBinding
 import com.example.pewpew.model.CartModel
-import com.example.pewpew.model.menumodel.MenuModelItem
-import com.example.pewpew.view.main.Adapters.AllRecyclerVireAdapter
-import com.example.pewpew.view.main.Adapters.cartModel
 import com.example.pewpew.view.main.Adaptersimport.CartRecyclerViewAdapter
 
 private const val TAG = "CartFragment"
 
 class CartFragment : Fragment() {
+    lateinit var notificationManager: NotificationManager
+    lateinit var notificationChannel: NotificationChannel
+    lateinit var builder: Notification.Builder
+    private val channelId = "i.apps.notifications"
+    private val description = "Test notification"
     private var cartList = listOf<CartModel>()
+    lateinit var handler: Handler
     private val cartViewModel: CartFreagmentViewModel by activityViewModels()
     private val dViewModel: DescriptionViewModel by activityViewModels()
     private lateinit var cartFragmentAdapter: CartRecyclerViewAdapter
@@ -43,9 +58,18 @@ class CartFragment : Fragment() {
         cartFragmentAdapter = CartRecyclerViewAdapter(cartViewModel)
         binding.recyclerViewCart.adapter= cartFragmentAdapter
         cartViewModel.getCart()
+        notificationManager = requireActivity().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        binding.confirmorder.setOnClickListener {
+            Toast.makeText(requireActivity(), "Your order is sent", Toast.LENGTH_SHORT).show()
+            handler = Handler()
+            handler.postDelayed({
+               notifi()
+
+            } , 10000)
+        }
+        }
 
 
-    }
     fun observers(){
 
 
@@ -74,5 +98,26 @@ class CartFragment : Fragment() {
             }
         })
 
+    }
+    fun notifi (){
+        // checking if android version is greater than oreo(API 26) or not
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            notificationChannel = NotificationChannel(channelId, description, NotificationManager.IMPORTANCE_HIGH)
+            notificationChannel.enableLights(true)
+            notificationChannel.lightColor = Color.GREEN
+            notificationChannel.enableVibration(false)
+            notificationManager.createNotificationChannel(notificationChannel)
+
+            builder = Notification.Builder(requireActivity(), channelId)
+                .setSmallIcon(R.drawable.logopewpew)
+                .setContentTitle("All Done!!")
+                .setContentText("Your PewPew Order is Ready ")
+                .setLargeIcon(BitmapFactory.decodeResource(this.resources, R.drawable.logopewpew))
+        } else {
+            builder = Notification.Builder(requireActivity())
+                .setSmallIcon(R.drawable.logopewpew)
+                .setLargeIcon(BitmapFactory.decodeResource(this.resources, R.drawable.logopewpew))
+        }
+        notificationManager.notify(1234, builder.build())
     }
 }
