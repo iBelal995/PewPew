@@ -40,11 +40,11 @@ class RegisterActivity : AppCompatActivity() {
             val cpassword:String = cpassword.text.toString()
 
             if(email.isNotEmpty() && password.isNotEmpty()){
-                FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password).addOnCompleteListener(){
-                        task ->
-                    if (password == cpassword){
                     if (validator.emailIsValid(email)) {
                         if (validator.passwordIsValid(password)) {
+                            if(password==cpassword){
+                            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password).addOnCompleteListener(){
+                                    task ->
                             if(task.isSuccessful){
                                 val firebaseUser: FirebaseUser = task.result!!.user!!
                                 Toast.makeText(this,"User Registered Successfully", Toast.LENGTH_LONG).show()
@@ -55,17 +55,15 @@ class RegisterActivity : AppCompatActivity() {
                                 intent.putExtra("Email", firebaseUser.email)
                                 startActivity(intent)
                                 finish()
-                            } else{
-                                Toast.makeText(this, task.exception!!.message.toString()
-                                    , Toast.LENGTH_SHORT).show()
-                            }
+                            } else {
+                                Toast.makeText(
+                                    this, task.exception!!.message.toString(), Toast.LENGTH_SHORT).show() }
+                        }}else{
+                                Toast.makeText(this, "Password and confirm password don't match", Toast.LENGTH_SHORT).show() }
                         } else
-                            Toast.makeText(this, "Make sure your password is strong.", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "Make sure your password is Containing at least eight places & at least one of each (Upparcase,Lowercase,[0-9],[!@#%^&*]) & no spaces allowed.", Toast.LENGTH_LONG).show()
                     }else{
                         Toast.makeText(this, "Make sure you typed your email address correctly.", Toast.LENGTH_SHORT).show()}
-                }else
-                        Toast.makeText(this, "Password and confirm password don't match", Toast.LENGTH_SHORT).show()
-                }
             }else {
                 Toast.makeText(this, "Please Enter the Email & password", Toast.LENGTH_SHORT).show()
             }
