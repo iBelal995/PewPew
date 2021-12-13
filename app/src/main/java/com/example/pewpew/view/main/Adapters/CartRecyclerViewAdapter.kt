@@ -63,6 +63,10 @@ class CartRecyclerViewAdapter(val viewModel: CartFreagmentViewModel) :
 
                 viewModel.removeFromCart(item.id)
 
+                val ayhaga = mutableListOf<CartModel>()
+               ayhaga.addAll(differ.currentList)
+                ayhaga.remove(item)
+                differ.submitList(ayhaga)
             }
         alertDialog.setNegativeButton("No") { dialog, _ ->
                 dialog.cancel()
@@ -74,17 +78,25 @@ class CartRecyclerViewAdapter(val viewModel: CartFreagmentViewModel) :
             count++
             holder.quantity.text = count.toString()
             holder.priceTextView.text = "${orignalprice*count } SR"
+            item.price = orignalprice*count
+            item.count = count
+            viewModel.updateCart(item)
 
         }
         holder.decreaseButton.setOnClickListener {
             if (count > 1) {
                 count--
                 holder.quantity.text = count.toString()
-
                 holder.priceTextView.text = "${orignalprice*count } SR"
+                item.price = orignalprice*count
+                item.count = count
+                viewModel.updateCart(item)
+
+
             }
 
         }
+
     }
 
     override fun getItemCount(): Int {

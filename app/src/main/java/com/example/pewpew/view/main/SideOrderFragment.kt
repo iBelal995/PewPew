@@ -38,7 +38,7 @@ class SideOrderFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observers()
-        sideOrderFragmentAdapter = SideOrderRecyclerViewAdapter(sideOrderViewModel,dViewModel)
+        sideOrderFragmentAdapter = SideOrderRecyclerViewAdapter(sideOrderViewModel,dViewModel,requireContext())
         binding.recyclerViewSideOrder.adapter= sideOrderFragmentAdapter
         sideOrderViewModel.callMenu()
     }

@@ -48,6 +48,7 @@ class CartFreagmentViewModel:ViewModel() {
                 if (response.isSuccessful) {
                     response.body()?.run {
                         Log.d(TAG, response.body().toString())
+                        getCart()
                         CartLiveDataS.postValue("response successful")
                     }
                 } else {
@@ -70,7 +71,7 @@ class CartFreagmentViewModel:ViewModel() {
                 if (response.isSuccessful) {
                     response.body()?.run {
                         Log.d(TAG, response.body().toString())
-                        CartLiveData.postValue(listOf(this))
+                            getCart()
                     }
                 } else {
                     Log.d(TAG, response.message())

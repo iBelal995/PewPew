@@ -44,15 +44,25 @@ class CartFragment : Fragment() {
         binding.recyclerViewCart.adapter= cartFragmentAdapter
         cartViewModel.getCart()
 
+
     }
     fun observers(){
+
+
         cartViewModel.CartLiveData.observe(viewLifecycleOwner, Observer{
             binding.progressBarCart.animate().alpha(0f).duration=1000
             cartFragmentAdapter.submitList(it)
             cartList = it
+
+            var price = 0.0
+            for(item in cartList){
+                 price = price + item.price.toInt()
+            }
+            var totalAmount = price + price*(0.15).toDouble()
+            binding.totalprice.text = "Total Amount (Including VAT) : ${totalAmount.toString()} SR"
+
             Log.d(TAG,it.toString())
             binding.recyclerViewCart.animate().alpha(1f)
-
         })
 
         cartViewModel.CartErrorLiveData.observe(viewLifecycleOwner,{
