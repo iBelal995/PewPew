@@ -51,7 +51,7 @@ class SideOrderRecyclerViewAdapter(val viewModel: SideOrderFragmentViewModel, va
     override fun onBindViewHolder(holder: SideOrderViewHolder, position: Int) {
         val item = differ.currentList[position]
         Log.d(TAG, item.name)
-        var count = 1
+        
         holder.titleTextView.text = item.name
         holder.priceTextView.text = "${item.price * count} SR"
         holder.addButton.setOnClickListener {
