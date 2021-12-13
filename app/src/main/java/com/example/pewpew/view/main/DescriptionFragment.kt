@@ -37,12 +37,20 @@ class DescriptionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.progressBardes.animate().alpha(0f).duration=1000
         dViewModel.selectedItemId.observe(viewLifecycleOwner,
             androidx.lifecycle.Observer {
                 Picasso.get().load(it.image).into(binding.itemImage)
                 binding.description.setText(it.description)
             })
+        binding.buttondes.setOnClickListener {
+            findNavController().navigate(R.id.action_descriptionFragment_to_burgersFragment)
+        }
+
+        val fragment = fragmentManager?.primaryNavigationFragment/***/
+        when(fragment){
+            is MainFragment -> binding.buttondes.visibility = view.visibility
+        }
 
     }
 }

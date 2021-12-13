@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_mainFragment_to_sideOrderFragment"
             app:destination="@id/sideOrderFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_descriptionFragment"
+            app:destination="@id/descriptionFragment" />
     </fragment>
     <fragment
         android:id="@+id/cartFrgament"
@@ -80,5 +83,9 @@
         android:id="@+id/descriptionFragment"
         android:name="com.example.pewpew.view.main.DescriptionFragment"
         android:label="fragment_description"
-        tools:layout="@layout/fragment_description" />
+        tools:layout="@layout/fragment_description" >
+        <action
+            android:id="@+id/action_descriptionFragment_to_burgersFragment"
+            app:destination="@id/burgersFragment" />
+    </fragment>
 </navigation>

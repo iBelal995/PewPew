@@ -4,7 +4,6 @@ import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
-import android.content.Intent
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
@@ -14,16 +13,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RemoteViews
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import com.example.firebaseauthantication.LoginActivity
 import com.example.pewpew.R
 import com.example.pewpew.databinding.FragmentCartBinding
 import com.example.pewpew.model.CartModel
 import com.example.pewpew.view.main.Adaptersimport.CartRecyclerViewAdapter
+
 
 private const val TAG = "CartFragment"
 
@@ -55,10 +53,13 @@ class CartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observers()
+
         cartFragmentAdapter = CartRecyclerViewAdapter(cartViewModel)
         binding.recyclerViewCart.adapter= cartFragmentAdapter
+
         cartViewModel.getCart()
         notificationManager = requireActivity().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
         binding.confirmorder.setOnClickListener {
             Toast.makeText(requireActivity(), "Your order is sent", Toast.LENGTH_SHORT).show()
             handler = Handler()
@@ -67,7 +68,21 @@ class CartFragment : Fragment() {
 
             } , 10000)
         }
+
+        if (cartFragmentAdapter.getItemCount() > 0){ /***/
+
+            binding.confirmorder.visibility = View.VISIBLE
+            binding.totalprice.visibility = View.VISIBLE
+        }else
+        {
+            binding.confirmorder.visibility = View.INVISIBLE
+            binding.totalprice.visibility = View.INVISIBLE
         }
+        }
+
+
+
+
 
 
     fun observers(){
