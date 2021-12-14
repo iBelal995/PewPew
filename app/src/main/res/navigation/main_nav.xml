@@ -51,7 +51,11 @@
         android:id="@+id/about"
         android:name="com.example.pewpew.view.main.AboutFragment"
         android:label="fragment_about"
-        tools:layout="@layout/fragment_about" />
+        tools:layout="@layout/fragment_about" >
+        <action
+            android:id="@+id/action_about_to_orderHistoryFragment"
+            app:destination="@id/orderHistoryFragment" />
+    </fragment>
     <fragment
         android:id="@+id/allFragment"
         android:name="com.example.pewpew.view.main.AllFragment"
@@ -131,5 +135,9 @@
         android:id="@+id/orderHistoryFragment"
         android:name="com.example.pewpew.view.main.OrderHistoryFragment"
         android:label="fragment_order_history"
-        tools:layout="@layout/fragment_order_history" />
+        tools:layout="@layout/fragment_order_history" >
+        <action
+            android:id="@+id/action_orderHistoryFragment_to_about"
+            app:destination="@id/about" />
+    </fragment>
 </navigation>

@@ -67,6 +67,7 @@ class MainActivity : AppCompatActivity() {
                             is AllFragment -> navController.navigate(R.id.action_allFragment_to_about)
                             is BurgersFragment -> navController.navigate(R.id.action_burgersFragment_to_about)
                             is DescriptionFragment -> navController.navigate(R.id.action_descriptionFragment_to_about)
+                            is OrderHistoryFragment -> navController.navigate(R.id.action_orderHistoryFragment_to_about)
                         }
                         Log.d("belal", "onCreate: ${fragment.toString()}")
                     }
@@ -79,6 +80,7 @@ class MainActivity : AppCompatActivity() {
                             is AllFragment -> navController.navigate(R.id.action_allFragment_to_orderHistoryFragment)
                             is BurgersFragment -> navController.navigate(R.id.action_burgersFragment_to_orderHistoryFragment)
                             is DescriptionFragment -> navController.navigate(R.id.action_descriptionFragment_to_orderHistoryFragment)
+                            is AboutFragment -> navController.navigate(R.id.action_about_to_orderHistoryFragment)
                         }
                     }
                 }
