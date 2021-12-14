@@ -10,13 +10,15 @@ import android.widget.ImageButton
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.example.pewpew.R
 import com.example.pewpew.databinding.FragmentAboutBinding
 import com.example.pewpew.databinding.FragmentAllDoneBinding
+import com.example.pewpew.view.MainActivity
+import com.google.android.material.navigation.NavigationView
 
 class AllDoneFragment : Fragment() {
     private lateinit var binding: FragmentAllDoneBinding
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +45,6 @@ class AllDoneFragment : Fragment() {
                 binding.count.setText("Time remaining: ${millisUntilFinished / 1000}s")
 
             }
-
             override fun onFinish() {
                 binding.progressBar.visibility = View.VISIBLE
                 binding.progressBar.animate().alpha(0f).duration=1000

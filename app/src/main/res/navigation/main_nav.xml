@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_mainFragment_to_orderHistoryFragment"
             app:destination="@id/orderHistoryFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_allDoneFragment"
+            app:destination="@id/allDoneFragment" />
     </fragment>
     <fragment
         android:id="@+id/cartFrgament"

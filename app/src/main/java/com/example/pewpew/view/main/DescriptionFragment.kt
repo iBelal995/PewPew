@@ -48,11 +48,8 @@ class DescriptionFragment : Fragment() {
             findNavController().navigate(R.id.action_descriptionFragment_to_burgersFragment)
         }
 
-
-
         arguments?.let {
             binding.buttondes.visibility = View.VISIBLE
-
         }
 
 
