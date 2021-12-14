@@ -13,6 +13,7 @@ import com.example.pewpew.model.menumodel.MenuModelItem
 
 
 class MainFragment : Fragment() {
+    val bundle = Bundle()
     private lateinit var binding: FragmentMainBinding
     private val dViewModel: DescriptionViewModel by activityViewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +32,8 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        bundle.putBoolean("type",true)
+
         binding.All.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_allFragment)
         }
@@ -52,7 +55,7 @@ class MainFragment : Fragment() {
                     "burger"
                 )
             )
-            findNavController().navigate(R.id.action_mainFragment_to_descriptionFragment)
+            findNavController().navigate(R.id.action_mainFragment_to_descriptionFragment,bundle)
         }
         binding.oldfashburgerImage.setOnClickListener {
             dViewModel.selectedItemId.postValue(
@@ -65,7 +68,7 @@ class MainFragment : Fragment() {
                     "burger"
                 )
             )
-            findNavController().navigate(R.id.action_mainFragment_to_descriptionFragment)
+            findNavController().navigate(R.id.action_mainFragment_to_descriptionFragment,bundle)
         }
         binding.pewpewburgerimage.setOnClickListener {
             dViewModel.selectedItemId.postValue(
@@ -78,7 +81,7 @@ class MainFragment : Fragment() {
                     "burger"
                 )
             )
-            findNavController().navigate(R.id.action_mainFragment_to_descriptionFragment)
+            findNavController().navigate(R.id.action_mainFragment_to_descriptionFragment,bundle)
         }
     }
 

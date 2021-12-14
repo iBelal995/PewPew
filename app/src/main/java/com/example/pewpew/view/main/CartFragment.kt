@@ -60,24 +60,22 @@ class CartFragment : Fragment() {
         cartViewModel.getCart()
         notificationManager = requireActivity().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-        binding.confirmorder.setOnClickListener {
-            Toast.makeText(requireActivity(), "Your order is sent", Toast.LENGTH_SHORT).show()
-            handler = Handler()
-            handler.postDelayed({
-               notifi()
+//        binding.confirmorder.setOnClickListener {
+//
+//            if(cartList.size > 0){
+//                for(item in cartList) {
+//                    cartViewModel.removeFromCart(id.toString())
+//                }
+//            }
+//            Toast.makeText(requireActivity(), "Your order is sent", Toast.LENGTH_SHORT).show()
+//            handler = Handler()
+//            handler.postDelayed({
+//               notifi()
+//
+//            } , 10000)
+//        }
 
-            } , 10000)
-        }
 
-        if (cartFragmentAdapter.getItemCount() > 0){ /***/
-
-            binding.confirmorder.visibility = View.VISIBLE
-            binding.totalprice.visibility = View.VISIBLE
-        }else
-        {
-            binding.confirmorder.visibility = View.INVISIBLE
-            binding.totalprice.visibility = View.INVISIBLE
-        }
         }
 
 
@@ -93,13 +91,38 @@ class CartFragment : Fragment() {
             cartFragmentAdapter.submitList(it)
             cartList = it
 
+//            Log.d("CART LIST", cartList.size.toString())
+            if (cartList.size > 0){ /***/
+                binding.yourcartempty.visibility = View.GONE
+                binding.confirmorder.visibility = View.VISIBLE
+                binding.totalprice.visibility = View.VISIBLE
+            }else
+            {
+                binding.confirmorder.visibility = View.INVISIBLE
+                binding.totalprice.visibility = View.INVISIBLE
+                binding.yourcartempty.visibility = View.VISIBLE
+            }
+
             var price = 0.0
             for(item in cartList){
                  price = price + item.price.toInt()
             }
             var totalAmount = price + price*(0.15).toDouble()
             binding.totalprice.text = "Total Amount (Including VAT) : ${totalAmount.toString()} SR"
+            binding.confirmorder.setOnClickListener {
 
+                if(cartList.size > 0){
+
+                    for(item in cartList) {
+                        cartViewModel.removeFromCart(item.id.toString())
+                    }
+                }
+                Toast.makeText(requireActivity(), "Your order is sent", Toast.LENGTH_SHORT).show()
+                handler = Handler()
+                handler.postDelayed({
+                    notifi()
+
+                } , 10000)}
             Log.d(TAG,it.toString())
             binding.recyclerViewCart.animate().alpha(1f)
         })

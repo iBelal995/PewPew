@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
@@ -47,10 +48,15 @@ class DescriptionFragment : Fragment() {
             findNavController().navigate(R.id.action_descriptionFragment_to_burgersFragment)
         }
 
-        val fragment = fragmentManager?.primaryNavigationFragment/***/
-        when(fragment){
-            is MainFragment -> binding.buttondes.visibility = view.visibility
+
+
+        arguments?.let {
+            binding.buttondes.visibility = View.VISIBLE
+
         }
 
+
     }
+
+
 }
