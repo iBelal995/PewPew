@@ -17,6 +17,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.example.pewpew.R
 import com.example.pewpew.databinding.FragmentCartBinding
 import com.example.pewpew.model.CartModel
@@ -60,34 +61,14 @@ class CartFragment : Fragment() {
         cartViewModel.getCart()
         notificationManager = requireActivity().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-//        binding.confirmorder.setOnClickListener {
-//
-//            if(cartList.size > 0){
-//                for(item in cartList) {
-//                    cartViewModel.removeFromCart(id.toString())
-//                }
-//            }
-//            Toast.makeText(requireActivity(), "Your order is sent", Toast.LENGTH_SHORT).show()
-//            handler = Handler()
-//            handler.postDelayed({
-//               notifi()
-//
-//            } , 10000)
-//        }
-
 
         }
-
-
-
-
-
 
     fun observers(){
 
 
         cartViewModel.CartLiveData.observe(viewLifecycleOwner, Observer{
-            binding.progressBarCart.animate().alpha(0f).duration=1000
+            binding.progressBarCart.animate().alpha(0f)
             cartFragmentAdapter.submitList(it)
             cartList = it
 
@@ -116,6 +97,7 @@ class CartFragment : Fragment() {
                     for(item in cartList) {
                         cartViewModel.removeFromCart(item.id.toString())
                     }
+                    findNavController().navigate(R.id.action_cartFrgament_to_allDoneFragment)
                 }
                 Toast.makeText(requireActivity(), "Your order is sent", Toast.LENGTH_SHORT).show()
                 handler = Handler()

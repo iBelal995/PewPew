@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_cartFrgament_to_descriptionFragment"
             app:destination="@id/descriptionFragment" />
+        <action
+            android:id="@+id/action_cartFrgament_to_allDoneFragment"
+            app:destination="@id/allDoneFragment" />
     </fragment>
     <fragment
         android:id="@+id/about"
@@ -88,4 +91,9 @@
             android:id="@+id/action_descriptionFragment_to_burgersFragment"
             app:destination="@id/burgersFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/allDoneFragment"
+        android:name="com.example.pewpew.view.main.AllDoneFragment"
+        android:label="fragment_all_done"
+        tools:layout="@layout/fragment_all_done" />
 </navigation>
