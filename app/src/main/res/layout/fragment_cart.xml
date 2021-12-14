@@ -28,16 +28,6 @@
                 android:textSize="30sp"
                 android:textStyle="italic" />
 
-            <TextView
-                android:id="@+id/yourcartempty"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Your Cart is Empty .."
-                android:textColor="#000000"
-                android:textSize="18sp"
-                android:visibility="visible" />
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewCart"
                 android:layout_width="match_parent"
@@ -80,5 +70,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/yourcartempty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Your Cart is Empty .."
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:visibility="visible" />
 
 </FrameLayout>

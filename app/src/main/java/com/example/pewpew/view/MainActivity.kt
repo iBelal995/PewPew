@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -41,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupWithNavController(binding.bottomNavView,navController)
 
         binding.settingButton.setOnClickListener {
-            val popupMenu: PopupMenu = PopupMenu(this,binding.settingButton)
+             val popupMenu: PopupMenu = PopupMenu(this,binding.settingButton)
             popupMenu.menuInflater.inflate(R.menu.settingmenu,popupMenu.menu)
             popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
                 when(item.itemId) {
@@ -65,8 +66,20 @@ class MainActivity : AppCompatActivity() {
                             is SideOrderFragment -> navController.navigate(R.id.action_sideOrderFragment_to_about)
                             is AllFragment -> navController.navigate(R.id.action_allFragment_to_about)
                             is BurgersFragment -> navController.navigate(R.id.action_burgersFragment_to_about)
+                            is DescriptionFragment -> navController.navigate(R.id.action_descriptionFragment_to_about)
                         }
                         Log.d("belal", "onCreate: ${fragment.toString()}")
+                    }
+                    R.id.orderhistory->{
+                        val fragment = navHostFragment.childFragmentManager.primaryNavigationFragment
+                        when(fragment){
+                            is MainFragment ->  navController.navigate(R.id.action_mainFragment_to_orderHistoryFragment)
+                            is CartFragment ->  navController.navigate(R.id.action_cartFrgament_to_orderHistoryFragment)
+                            is SideOrderFragment -> navController.navigate(R.id.action_sideOrderFragment_to_orderHistoryFragment)
+                            is AllFragment -> navController.navigate(R.id.action_allFragment_to_orderHistoryFragment)
+                            is BurgersFragment -> navController.navigate(R.id.action_burgersFragment_to_orderHistoryFragment)
+                            is DescriptionFragment -> navController.navigate(R.id.action_descriptionFragment_to_orderHistoryFragment)
+                        }
                     }
                 }
                 true

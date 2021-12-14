@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_mainFragment_to_descriptionFragment"
             app:destination="@id/descriptionFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_orderHistoryFragment"
+            app:destination="@id/orderHistoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/cartFrgament"
@@ -40,6 +43,9 @@
         <action
             android:id="@+id/action_cartFrgament_to_allDoneFragment"
             app:destination="@id/allDoneFragment" />
+        <action
+            android:id="@+id/action_cartFrgament_to_orderHistoryFragment"
+            app:destination="@id/orderHistoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/about"
@@ -57,6 +63,9 @@
         <action
             android:id="@+id/action_allFragment_to_descriptionFragment"
             app:destination="@id/descriptionFragment" />
+        <action
+            android:id="@+id/action_allFragment_to_orderHistoryFragment"
+            app:destination="@id/orderHistoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/sideOrderFragment"
@@ -69,6 +78,9 @@
         <action
             android:id="@+id/action_sideOrderFragment_to_descriptionFragment"
             app:destination="@id/descriptionFragment" />
+        <action
+            android:id="@+id/action_sideOrderFragment_to_orderHistoryFragment"
+            app:destination="@id/orderHistoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/burgersFragment"
@@ -81,6 +93,9 @@
         <action
             android:id="@+id/action_burgersFragment_to_descriptionFragment"
             app:destination="@id/descriptionFragment" />
+        <action
+            android:id="@+id/action_burgersFragment_to_orderHistoryFragment"
+            app:destination="@id/orderHistoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/descriptionFragment"
@@ -90,10 +105,31 @@
         <action
             android:id="@+id/action_descriptionFragment_to_burgersFragment"
             app:destination="@id/burgersFragment" />
+        <action
+            android:id="@+id/action_descriptionFragment_to_about"
+            app:destination="@id/about" />
+        <action
+            android:id="@+id/action_descriptionFragment_to_orderHistoryFragment"
+            app:destination="@id/orderHistoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/allDoneFragment"
         android:name="com.example.pewpew.view.main.AllDoneFragment"
         android:label="fragment_all_done"
-        tools:layout="@layout/fragment_all_done" />
+        tools:layout="@layout/fragment_all_done" >
+        <action
+            android:id="@+id/action_allDoneFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_allDoneFragment_to_orderHistoryFragment"
+            app:destination="@id/orderHistoryFragment" />
+        <action
+            android:id="@+id/action_allDoneFragment_to_about"
+            app:destination="@id/about" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderHistoryFragment"
+        android:name="com.example.pewpew.view.main.OrderHistoryFragment"
+        android:label="fragment_order_history"
+        tools:layout="@layout/fragment_order_history" />
 </navigation>

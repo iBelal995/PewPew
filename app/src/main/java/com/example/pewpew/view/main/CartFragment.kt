@@ -133,6 +133,7 @@ class CartFragment : Fragment() {
                 .setContentTitle("All Done!!")
                 .setContentText("Your PewPew Order is Ready ")
                 .setLargeIcon(BitmapFactory.decodeResource(this.resources, R.drawable.logopewpew))
+
         } else {
             builder = Notification.Builder(requireActivity())
                 .setSmallIcon(R.drawable.logopewpew)
