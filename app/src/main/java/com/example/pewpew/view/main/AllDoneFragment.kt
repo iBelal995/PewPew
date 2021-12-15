@@ -14,6 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -25,12 +26,14 @@ import com.example.pewpew.view.MainActivity
 import com.google.android.material.navigation.NavigationView
 
 class AllDoneFragment : Fragment() {
+    private val allDoneViewModel: AllDoneViewModel by activityViewModels()
     lateinit var notificationManager: NotificationManager
     lateinit var notificationChannel: NotificationChannel
     lateinit var builder: Notification.Builder
     private val channelId = "i.apps.notifications"
     private val description = "Test notification"
     private lateinit var timer:CountDownTimer
+      var remainingTime:Long = 0
     private lateinit var binding: FragmentAllDoneBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,13 +53,13 @@ class AllDoneFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         notificationManager = requireActivity().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
        time()
     }
     fun time(){
          timer = object: CountDownTimer(10000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                binding.count.setText("Time remaining: ${millisUntilFinished / 1000}s")
+                remainingTime = millisUntilFinished
+                binding.count.setText("Time remaining: ${remainingTime / 1000}s")
 
             }
             override fun onFinish() {
@@ -76,7 +79,7 @@ class AllDoneFragment : Fragment() {
                 binding.orderagain.setOnClickListener {
                     findNavController().navigate(R.id.action_allDoneFragment_to_mainFragment)
                 }
-                notifi()
+                allDoneViewModel.timeLiveData.postValue(0)
 
             }
         }
@@ -87,30 +90,11 @@ class AllDoneFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         timer.cancel()
-        notifi()
+        allDoneViewModel.timeLiveData.postValue(remainingTime.toInt())
+
+
 
     }
-    fun notifi (){
-        // checking if android version is greater than oreo(API 26) or not
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            notificationChannel = NotificationChannel(channelId, description, NotificationManager.IMPORTANCE_HIGH)
-            notificationChannel.enableLights(true)
-            notificationChannel.lightColor = Color.GREEN
-            notificationChannel.enableVibration(false)
-            notificationManager.createNotificationChannel(notificationChannel)
 
-            builder = Notification.Builder(requireActivity(), channelId)
-                .setSmallIcon(R.drawable.logopewpew)
-                .setContentTitle("All Done!!")
-                .setContentText("Your PewPew Order is Ready ")
-                .setLargeIcon(BitmapFactory.decodeResource(this.resources, R.drawable.logopewpew))
-
-        } else {
-            builder = Notification.Builder(requireActivity())
-                .setSmallIcon(R.drawable.logopewpew)
-                .setLargeIcon(BitmapFactory.decodeResource(this.resources, R.drawable.logopewpew))
-        }
-        notificationManager.notify(1234, builder.build())
-    }
 
     }

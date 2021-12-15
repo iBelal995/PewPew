@@ -1,18 +1,20 @@
 package com.example.pewpew.view
 
-import android.content.ClipData
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
-import android.view.Menu
-import android.widget.Button
-import android.widget.ImageButton
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.view.menu.MenuView
 import androidx.appcompat.widget.PopupMenu
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -23,12 +25,18 @@ import com.example.pewpew.R
 import com.example.pewpew.databinding.ActivityMainBinding
 import com.example.pewpew.view.main.*
 import com.google.firebase.auth.FirebaseAuth
-import androidx.appcompat.view.menu.MenuView.ItemView as AndroidxAppcompatViewMenuMenuViewItemView
+import java.util.*
 
 private lateinit var sharedPref: SharedPreferences
 private lateinit var sharedPrefEditor: SharedPreferences.Editor
-class MainActivity : AppCompatActivity() {
 
+class MainActivity : AppCompatActivity() {
+    private val allDoneViewModel: AllDoneViewModel by viewModels()
+    lateinit var notificationManager: NotificationManager
+    lateinit var notificationChannel: NotificationChannel
+    lateinit var builder: Notification.Builder
+    private val channelId = "i.apps.notifications"
+    private val description = "Test notification"
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
 
@@ -40,6 +48,7 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController
         NavigationUI.setupWithNavController(binding.bottomNavView,navController)
+        notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         binding.settingButton.setOnClickListener {
              val popupMenu: PopupMenu = PopupMenu(this,binding.settingButton)
@@ -99,10 +108,38 @@ class MainActivity : AppCompatActivity() {
                 this.resources.getColor(R.color.colororange) // this is for the navigation bar color of the android system
         }
 
+        allDoneViewModel.timeLiveData.observe(this,{ it
+
+            handler = Handler()
+            handler.postDelayed({
+                notifi()
+                      }, it.toLong())
+        })
 
     }
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
+    fun notifi (){
+        // checking if android version is greater than oreo(API 26) or not
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            notificationChannel = NotificationChannel(channelId, description, NotificationManager.IMPORTANCE_HIGH)
+            notificationChannel.enableLights(true)
+            notificationChannel.lightColor = Color.GREEN
+            notificationChannel.enableVibration(false)
+            notificationManager.createNotificationChannel(notificationChannel)
 
+            builder = Notification.Builder(this, channelId)
+                .setSmallIcon(R.drawable.logopewpew)
+                .setContentTitle("All Done!!")
+                .setContentText("Your PewPew Order is Ready ")
+                .setLargeIcon(BitmapFactory.decodeResource(this.resources, R.drawable.logopewpew))
+
+        } else {
+            builder = Notification.Builder(this)
+                .setSmallIcon(R.drawable.logopewpew)
+                .setLargeIcon(BitmapFactory.decodeResource(this.resources, R.drawable.logopewpew))
+        }
+        notificationManager.notify(1234, builder.build())
+    }
     }
