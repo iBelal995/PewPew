@@ -27,11 +27,7 @@ import com.example.pewpew.view.main.Adaptersimport.CartRecyclerViewAdapter
 private const val TAG = "CartFragment"
 
 class CartFragment : Fragment() {
-    lateinit var notificationManager: NotificationManager
-    lateinit var notificationChannel: NotificationChannel
-    lateinit var builder: Notification.Builder
-    private val channelId = "i.apps.notifications"
-    private val description = "Test notification"
+
     private var cartList = listOf<CartModel>()
     lateinit var handler: Handler
     private val cartViewModel: CartFreagmentViewModel by activityViewModels()
@@ -59,7 +55,6 @@ class CartFragment : Fragment() {
         binding.recyclerViewCart.adapter= cartFragmentAdapter
 
         cartViewModel.getCart()
-        notificationManager = requireActivity().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
 
         }
@@ -100,11 +95,7 @@ class CartFragment : Fragment() {
                     findNavController().navigate(R.id.action_cartFrgament_to_allDoneFragment)
                 }
                 Toast.makeText(requireActivity(), "Your order is sent", Toast.LENGTH_SHORT).show()
-                handler = Handler()
-                handler.postDelayed({
-                    notifi()
-
-                } , 10000)}
+               }
             Log.d(TAG,it.toString())
             binding.recyclerViewCart.animate().alpha(1f)
         })
@@ -119,26 +110,5 @@ class CartFragment : Fragment() {
         })
 
     }
-    fun notifi (){
-        // checking if android version is greater than oreo(API 26) or not
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            notificationChannel = NotificationChannel(channelId, description, NotificationManager.IMPORTANCE_HIGH)
-            notificationChannel.enableLights(true)
-            notificationChannel.lightColor = Color.GREEN
-            notificationChannel.enableVibration(false)
-            notificationManager.createNotificationChannel(notificationChannel)
 
-            builder = Notification.Builder(requireActivity(), channelId)
-                .setSmallIcon(R.drawable.logopewpew)
-                .setContentTitle("All Done!!")
-                .setContentText("Your PewPew Order is Ready ")
-                .setLargeIcon(BitmapFactory.decodeResource(this.resources, R.drawable.logopewpew))
-
-        } else {
-            builder = Notification.Builder(requireActivity())
-                .setSmallIcon(R.drawable.logopewpew)
-                .setLargeIcon(BitmapFactory.decodeResource(this.resources, R.drawable.logopewpew))
-        }
-        notificationManager.notify(1234, builder.build())
-    }
 }
