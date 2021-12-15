@@ -66,7 +66,19 @@ class CartFragment : Fragment() {
             binding.progressBarCart.animate().alpha(0f)
             cartFragmentAdapter.submitList(it)
             cartList = it
+            binding.confirmorder.setOnClickListener {
 
+                if(cartList.size > 0){
+
+                    for(item in cartList) {
+
+
+                        cartViewModel.removeFromCart(item.id)
+                    }
+                    findNavController().navigate(R.id.action_cartFrgament_to_allDoneFragment)
+                }
+                Toast.makeText(requireActivity(), "Your order is sent", Toast.LENGTH_SHORT).show()
+            }
 //            Log.d("CART LIST", cartList.size.toString())
             if (cartList.size > 0){ /***/
                 binding.yourcartempty.visibility = View.GONE
@@ -85,17 +97,6 @@ class CartFragment : Fragment() {
             }
             var totalAmount = price + price*(0.15).toDouble()
             binding.totalprice.text = "Total Amount (Including VAT) : ${totalAmount.toString()} SR"
-            binding.confirmorder.setOnClickListener {
-
-                if(cartList.size > 0){
-
-                    for(item in cartList) {
-                        cartViewModel.removeFromCart(item.id.toString())
-                    }
-                    findNavController().navigate(R.id.action_cartFrgament_to_allDoneFragment)
-                }
-                Toast.makeText(requireActivity(), "Your order is sent", Toast.LENGTH_SHORT).show()
-               }
             Log.d(TAG,it.toString())
             binding.recyclerViewCart.animate().alpha(1f)
         })

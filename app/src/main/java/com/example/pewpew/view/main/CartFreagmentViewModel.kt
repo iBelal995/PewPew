@@ -48,8 +48,8 @@ class CartFreagmentViewModel:ViewModel() {
                 if (response.isSuccessful) {
                     response.body()?.run {
                         Log.d(TAG, response.body().toString())
-                        getCart()
                         CartLiveDataS.postValue("response successful")
+                        getCart()
                     }
                 } else {
                     Log.d(TAG, response.message())

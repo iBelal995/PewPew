@@ -2,6 +2,7 @@ package com.example.pewpew.model
 
 
 import com.google.gson.annotations.SerializedName
+import java.util.*
 
 data class CartModel(
     @SerializedName("Description")
@@ -17,6 +18,7 @@ data class CartModel(
     @SerializedName("userid")
     val userid: String,
     @SerializedName("count")
-    var count: Int
-
+    var count: Int,
+    @SerializedName("date")
+    var date: Date = Date()
 )
