@@ -10,7 +10,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/itemimageViews"
+            android:id="@+id/itemimageViewspecific"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|left"
@@ -18,7 +18,7 @@
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/ordernumber"
+            android:id="@+id/namespecific"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|top"
@@ -29,7 +29,7 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/priceTextView"
+            android:id="@+id/priceTextViewspecific"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|right"
@@ -37,33 +37,17 @@
             android:text="TextView"
             android:textColor="#B80303" />
 
-        <Button
-            android:id="@+id/deleteItemButton"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center|top"
-            android:layout_marginLeft="160dp"
-            android:layout_marginTop="32dp"
-            android:background="@drawable/ic_baseline_cancel_24" />
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="70dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/decrease"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center"
-                android:background="@drawable/ic_baseline_remove_circle_outline_24"
-                android:onClick="decreaseInteger"
-                android:text="-" />
 
             <TextView
-                android:id="@+id/integer_number"
+                android:id="@+id/integer_numberspecific"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -75,15 +59,7 @@
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/increase"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center"
-                android:background="@drawable/ic_baseline_add_circle_outline_24"
-                android:onClick="increaseInteger"
-                android:text="+"
-                android:textSize="60sp" />
+
         </LinearLayout>
 
     </FrameLayout>

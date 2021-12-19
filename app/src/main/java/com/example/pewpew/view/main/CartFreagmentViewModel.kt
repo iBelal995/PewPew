@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pewpew.model.CartModel
+import com.example.pewpew.model.HistoryModel
 import com.example.pewpew.repository.ApiServicesRepository
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.Dispatchers
@@ -16,6 +17,8 @@ class CartFreagmentViewModel:ViewModel() {
     val CartLiveData = MutableLiveData<List<CartModel>>()
     val CartLiveDataS = MutableLiveData<String>()
     val CartErrorLiveData = MutableLiveData<String>()
+    val historyxlLiveData = MutableLiveData<HistoryModel>()
+    val historyErrorLiveData = MutableLiveData<String>()
     private val apiService = ApiServicesRepository.get()
     val userid:String = FirebaseAuth.getInstance().currentUser?.uid ?: "Error"
     fun getCart() {
@@ -83,5 +86,26 @@ class CartFreagmentViewModel:ViewModel() {
             }
         }
     }
+    fun addToHistory(item: HistoryModel){
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
 
+                val response = apiService.addToHistory(item)
+                if(response.isSuccessful){
+                    response.body()?.run {
+                        Log.d(TAG,response.body().toString())
+                        historyxlLiveData.postValue(this)
+                    }
+                }else{
+                    Log.d(TAG,response.message())
+                    historyErrorLiveData.postValue(response.message())
+
+                }
+
+            }catch (e: Exception){
+                Log.d(TAG, e.message.toString())
+                historyErrorLiveData.postValue(e.message.toString())
+            }
+        }
+    }
 }

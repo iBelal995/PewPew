@@ -6,18 +6,14 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pewpew.R
 import com.example.pewpew.model.CartModel
-import com.example.pewpew.model.menumodel.MenuModelItem
 import com.example.pewpew.view.main.CartFreagmentViewModel
 import com.squareup.picasso.Picasso
-import okhttp3.internal.notify
 
 class CartRecyclerViewAdapter(val viewModel: CartFreagmentViewModel) :
     RecyclerView.Adapter<CartRecyclerViewAdapter.CartViewHolder>() {
@@ -106,9 +102,9 @@ class CartRecyclerViewAdapter(val viewModel: CartFreagmentViewModel) :
         differ.submitList(list)
     }
     class CartViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val titleTextView: TextView = itemView.findViewById(R.id.titleTextView)
+        val titleTextView: TextView = itemView.findViewById(R.id.ordernumber)
         val priceTextView: TextView = itemView.findViewById(R.id.priceTextView)
-        val itemImageView: ImageView = itemView.findViewById(R.id.itemimageView)
+        val itemImageView: ImageView = itemView.findViewById(R.id.itemimageViews)
         val deleteButton: Button = itemView.findViewById(R.id.deleteItemButton)
         val increaseButton: Button = itemView.findViewById(R.id.increase)
         val decreaseButton: Button = itemView.findViewById(R.id.decrease)

@@ -142,5 +142,20 @@
         <action
             android:id="@+id/action_orderHistoryFragment_to_about"
             app:destination="@id/about" />
+        <action
+            android:id="@+id/action_orderHistoryFragment_to_specificOrderFragment"
+            app:destination="@id/specificOrderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/specificOrderFragment"
+        android:name="com.example.pewpew.view.main.SpecificOrderFragment"
+        android:label="fragment_specific_order"
+        tools:layout="@layout/fragment_specific_order" >
+        <action
+            android:id="@+id/action_specificOrderFragment_to_about"
+            app:destination="@id/about" />
+        <action
+            android:id="@+id/action_specificOrderFragment_to_orderHistoryFragment"
+            app:destination="@id/orderHistoryFragment" />
     </fragment>
 </navigation>

@@ -3,9 +3,11 @@ package com.example.pewpew.repository
 import android.content.Context
 import com.example.pewpew.api.pewpewApi
 import com.example.pewpew.model.CartModel
+import com.example.pewpew.model.HistoryModel
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.Exception
+import java.util.*
 
 
 private const val TAG = "ApiServicesRepository"
@@ -19,11 +21,13 @@ class ApiServicesRepository(context: Context) {
 
     suspend fun getMenu() = retrofitApi.getMenu()
     suspend fun getMenu(type:String) = retrofitApi.getMenu(type)
-
     suspend fun getCart(userid:String) = retrofitApi.getCart(userid)
     suspend fun addToCart(item: CartModel) = retrofitApi.addToCart(item)
     suspend fun removeFromCart(id:String) = retrofitApi.removeFromCart(id)
     suspend fun updateCart(id:String,item:CartModel) = retrofitApi.updateCart(id,item)
+    suspend fun addToHistory(item:HistoryModel) = retrofitApi.addTohistory(item)
+    suspend fun getHistory(userid: String) = retrofitApi.getHistory(userid)
+    suspend fun getHistorySpec(ordernumber: Int) = retrofitApi.getHistoryspec(ordernumber)
 
 
     companion object{

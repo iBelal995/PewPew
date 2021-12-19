@@ -16,7 +16,6 @@ import com.example.pewpew.model.menumodel.MenuModelItem
 import com.example.pewpew.view.main.AllFragmentViewModel
 import com.example.pewpew.view.main.DescriptionViewModel
 import com.google.firebase.auth.FirebaseAuth
-import com.google.gson.annotations.SerializedName
 import com.squareup.picasso.Picasso
 
 const val TAG = "ADAPTERALL"
@@ -93,9 +92,9 @@ class AllRecyclerVireAdapter(val viewModel: AllFragmentViewModel, val dviewModel
     }
 
     class AllViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val titleTextView: TextView = itemView.findViewById(R.id.titleTextView)
+        val titleTextView: TextView = itemView.findViewById(R.id.ordernumber)
         val priceTextView: TextView = itemView.findViewById(R.id.priceTextView)
-        val itemImageView: ImageView = itemView.findViewById(R.id.itemimageView)
+        val itemImageView: ImageView = itemView.findViewById(R.id.itemimageViews)
         val addButton: Button = itemView.findViewById(R.id.addButton)
         val increaseButton: Button = itemView.findViewById(R.id.increase)
         val decreaseButton: Button = itemView.findViewById(R.id.decrease)

@@ -21,13 +21,19 @@ import androidx.navigation.fragment.findNavController
 import com.example.pewpew.R
 import com.example.pewpew.databinding.FragmentCartBinding
 import com.example.pewpew.model.CartModel
+import com.example.pewpew.model.HistoryModel
+import com.example.pewpew.model.menumodel.MenuModelItem
 import com.example.pewpew.view.main.Adaptersimport.CartRecyclerViewAdapter
+import com.google.firebase.auth.FirebaseAuth
+import java.util.*
+import kotlin.properties.Delegates
 
 
 private const val TAG = "CartFragment"
 
 class CartFragment : Fragment() {
-
+     var autogenerate = (1..1000000).random()
+    var totalAmount:Double = 0.0
     private var cartList = listOf<CartModel>()
     lateinit var handler: Handler
     private val cartViewModel: CartFreagmentViewModel by activityViewModels()
@@ -71,7 +77,7 @@ class CartFragment : Fragment() {
                 if(cartList.size > 0){
 
                     for(item in cartList) {
-
+                        cartViewModel.addToHistory(item.toHistoryModel())
 
                         cartViewModel.removeFromCart(item.id)
                     }
@@ -95,7 +101,7 @@ class CartFragment : Fragment() {
             for(item in cartList){
                  price = price + item.price.toInt()
             }
-            var totalAmount = price + price*(0.15).toDouble()
+             totalAmount = price + price*(0.15).toDouble()
             binding.totalprice.text = "Total Amount (Including VAT) : ${totalAmount.toString()} SR"
             Log.d(TAG,it.toString())
             binding.recyclerViewCart.animate().alpha(1f)
@@ -111,5 +117,20 @@ class CartFragment : Fragment() {
         })
 
     }
+    fun CartModel.toHistoryModel()= HistoryModel(
+        description = description,
+        id = id,
+        image = image,
+        name = name ,
+        price = price ,
+        userid = "${FirebaseAuth.getInstance().currentUser?.uid}",
+        count = count,
+        originalprice = 0,
+        date = Date(),
+        ordernumber = autogenerate,
+        totalprice = totalAmount
+
+
+    )
 
 }

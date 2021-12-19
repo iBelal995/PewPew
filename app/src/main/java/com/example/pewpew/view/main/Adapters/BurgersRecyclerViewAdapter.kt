@@ -24,7 +24,7 @@ import com.squareup.picasso.Picasso
 
 class BurgersRecyclerViewAdapter(val viewModel: BurgersFragmentViewModel, val dviewModel: DescriptionViewModel,val context: Context) :
     RecyclerView.Adapter<BurgersRecyclerViewAdapter.BurgersViewHolder>() {
-    var count = 1
+
     val DIFF_CALL_BACK = object : DiffUtil.ItemCallback<MenuModelItem>() {
         override fun areItemsTheSame(oldItem: MenuModelItem, newItem: MenuModelItem): Boolean {
             return oldItem.id == newItem.id
@@ -51,11 +51,11 @@ class BurgersRecyclerViewAdapter(val viewModel: BurgersFragmentViewModel, val dv
     override fun onBindViewHolder(holder: BurgersViewHolder, position: Int) {
         val item = differ.currentList[position]
         Log.d(TAG, item.name)
-
+        var count = 1
         holder.titleTextView.text = item.name
         holder.priceTextView.text = "${item.price * count} SR"
         holder.addButton.setOnClickListener {
-            viewModel.addToCart(item.toCartModel())
+            viewModel.addToCart(item.toCartModel(count))
             Toast.makeText(context, "Item added to cart", Toast.LENGTH_SHORT).show()
         }
         Picasso.get().load(item.image).into(holder.itemImageView)
@@ -89,15 +89,15 @@ class BurgersRecyclerViewAdapter(val viewModel: BurgersFragmentViewModel, val dv
     }
 
     class BurgersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val titleTextView: TextView = itemView.findViewById(R.id.titleTextView)
+        val titleTextView: TextView = itemView.findViewById(R.id.ordernumber)
         val priceTextView: TextView = itemView.findViewById(R.id.priceTextView)
-        val itemImageView: ImageView = itemView.findViewById(R.id.itemimageView)
+        val itemImageView: ImageView = itemView.findViewById(R.id.itemimageViews)
         val addButton: Button = itemView.findViewById(R.id.addButton)
         val increaseButton: Button = itemView.findViewById(R.id.increase)
         val decreaseButton: Button = itemView.findViewById(R.id.decrease)
         val quantity: TextView = itemView.findViewById(R.id.integer_number)
     }
-    fun MenuModelItem.toCartModel()= CartModel(
+    fun MenuModelItem.toCartModel(count: Int)= CartModel(
         description = description,
         id = id,
         image = image,

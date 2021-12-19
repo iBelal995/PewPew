@@ -1,6 +1,7 @@
 package com.example.pewpew.api
 
 import com.example.pewpew.model.CartModel
+import com.example.pewpew.model.HistoryModel
 import com.example.pewpew.model.menumodel.MenuModelItem
 import okhttp3.ResponseBody
 import retrofit2.Response
@@ -37,4 +38,19 @@ interface pewpewApi {
         @Path("id") id:String,
         @Body item:CartModel
     ):Response<CartModel>
+
+    @POST("/history")
+    suspend fun addTohistory(
+        @Body item:HistoryModel
+    ):Response<HistoryModel>
+
+    @GET("/history")
+    suspend fun getHistory(
+        @Query("userid") userid:String
+    ):Response<List<HistoryModel>>
+
+    @GET("/history")
+    suspend fun getHistoryspec(
+        @Query("ordernumber") ordernumber:Int
+    ):Response<List<HistoryModel>>
 }
