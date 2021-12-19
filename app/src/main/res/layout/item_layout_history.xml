@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center|left"
             android:layout_marginLeft="20dp"
-            android:layout_marginBottom="35dp"
+            android:layout_marginBottom="38dp"
             android:text="TextView"
             android:textColor="#B80303" />
 
