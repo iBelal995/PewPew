@@ -23,7 +23,6 @@ const val TAG = "ADAPTERALL"
 lateinit var cartModel: CartModel
 class AllRecyclerVireAdapter(val viewModel: AllFragmentViewModel, val dviewModel: DescriptionViewModel, val context: Context) :
     RecyclerView.Adapter<AllRecyclerVireAdapter.AllViewHolder>() {
-    var count = 1
     val DIFF_CALL_BACK = object : DiffUtil.ItemCallback<MenuModelItem>() {
         override fun areItemsTheSame(oldItem: MenuModelItem, newItem: MenuModelItem): Boolean {
             return oldItem.id == newItem.id
@@ -51,12 +50,13 @@ class AllRecyclerVireAdapter(val viewModel: AllFragmentViewModel, val dviewModel
     override fun onBindViewHolder(holder: AllViewHolder, position: Int) {
         val item = differ.currentList[position]
         Log.d(TAG, item.name)
+        var count = 1
 
         holder.titleTextView.text = item.name
         holder.priceTextView.text = "${item.price * count} SR"
         holder.addButton.setOnClickListener {
 
-            viewModel.addToCart(item.toCartModel())
+            viewModel.addToCart(item.toCartModel(count))
             Toast.makeText(context, "Item added to cart", Toast.LENGTH_SHORT).show()
         }
         Picasso.get().load(item.image).into(holder.itemImageView)
@@ -66,6 +66,7 @@ class AllRecyclerVireAdapter(val viewModel: AllFragmentViewModel, val dviewModel
         }
 
         holder.quantity.text = count.toString()
+
         holder.increaseButton.setOnClickListener {
             count++
             holder.quantity.text = count.toString()
@@ -100,7 +101,7 @@ class AllRecyclerVireAdapter(val viewModel: AllFragmentViewModel, val dviewModel
         val decreaseButton: Button = itemView.findViewById(R.id.decrease)
         val quantity: TextView = itemView.findViewById(R.id.integer_number)
     }
-    fun MenuModelItem.toCartModel()=CartModel(
+    fun MenuModelItem.toCartModel(count: Int)=CartModel(
          description = description,
          id = id,
          image = image,
