@@ -79,6 +79,7 @@ class MainActivity : AppCompatActivity() {
                             is OrderHistoryFragment -> navController.navigate(R.id.action_orderHistoryFragment_to_about)
                             is AllDoneFragment -> navController.navigate(R.id.action_allDoneFragment_to_about)
                             is SpecificOrderFragment -> navController.navigate(R.id.action_specificOrderFragment_to_about)
+                            is ProfileFragment -> navController.navigate(R.id.action_profileFragment_to_about)
 
                         }
                         Log.d("belal", "onCreate: ${fragment.toString()}")
@@ -95,9 +96,26 @@ class MainActivity : AppCompatActivity() {
                             is AboutFragment -> navController.navigate(R.id.action_about_to_orderHistoryFragment)
                             is AllDoneFragment -> navController.navigate(R.id.action_allDoneFragment_to_orderHistoryFragment)
                             is SpecificOrderFragment -> navController.navigate(R.id.action_specificOrderFragment_to_orderHistoryFragment)
+                            is ProfileFragment -> navController.navigate(R.id.action_profileFragment_to_orderHistoryFragment)
 
                         }
                     }
+                    R.id.profile->{
+                        val fragment = navHostFragment.childFragmentManager.primaryNavigationFragment
+                        when(fragment){
+                            is MainFragment ->  navController.navigate(R.id.action_mainFragment_to_profileFragment)
+                            is CartFragment ->  navController.navigate(R.id.action_cartFrgament_to_profileFragment)
+                            is SideOrderFragment -> navController.navigate(R.id.action_sideOrderFragment_to_profileFragment)
+                            is AllFragment -> navController.navigate(R.id.action_allFragment_to_profileFragment)
+                            is BurgersFragment -> navController.navigate(R.id.action_burgersFragment_to_profileFragment)
+                            is DescriptionFragment -> navController.navigate(R.id.action_descriptionFragment_to_profileFragment)
+                            is AboutFragment -> navController.navigate(R.id.action_about_to_profileFragment)
+                            is AllDoneFragment -> navController.navigate(R.id.action_allDoneFragment_to_profileFragment)
+                            is SpecificOrderFragment -> navController.navigate(R.id.action_specificOrderFragment_to_orderHistoryFragment)
+                            is OrderHistoryFragment -> navController.navigate(R.id.action_orderHistoryFragment_to_profileFragment)
+                        }
+                    }
+
                 }
                 true
             })

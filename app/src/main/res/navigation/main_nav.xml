@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_mainFragment_to_allDoneFragment"
             app:destination="@id/allDoneFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_profileFragment"
+            app:destination="@id/profile" />
     </fragment>
     <fragment
         android:id="@+id/cartFrgament"
@@ -49,6 +52,9 @@
         <action
             android:id="@+id/action_cartFrgament_to_orderHistoryFragment"
             app:destination="@id/orderHistoryFragment" />
+        <action
+            android:id="@+id/action_cartFrgament_to_profileFragment"
+            app:destination="@id/profile" />
     </fragment>
     <fragment
         android:id="@+id/about"
@@ -58,6 +64,9 @@
         <action
             android:id="@+id/action_about_to_orderHistoryFragment"
             app:destination="@id/orderHistoryFragment" />
+        <action
+            android:id="@+id/action_about_to_profileFragment"
+            app:destination="@id/profile" />
     </fragment>
     <fragment
         android:id="@+id/allFragment"
@@ -73,6 +82,9 @@
         <action
             android:id="@+id/action_allFragment_to_orderHistoryFragment"
             app:destination="@id/orderHistoryFragment" />
+        <action
+            android:id="@+id/action_allFragment_to_profileFragment"
+            app:destination="@id/profile" />
     </fragment>
     <fragment
         android:id="@+id/sideOrderFragment"
@@ -88,6 +100,9 @@
         <action
             android:id="@+id/action_sideOrderFragment_to_orderHistoryFragment"
             app:destination="@id/orderHistoryFragment" />
+        <action
+            android:id="@+id/action_sideOrderFragment_to_profileFragment"
+            app:destination="@id/profile" />
     </fragment>
     <fragment
         android:id="@+id/burgersFragment"
@@ -103,6 +118,9 @@
         <action
             android:id="@+id/action_burgersFragment_to_orderHistoryFragment"
             app:destination="@id/orderHistoryFragment" />
+        <action
+            android:id="@+id/action_burgersFragment_to_profileFragment"
+            app:destination="@id/profile" />
     </fragment>
     <fragment
         android:id="@+id/descriptionFragment"
@@ -118,6 +136,9 @@
         <action
             android:id="@+id/action_descriptionFragment_to_orderHistoryFragment"
             app:destination="@id/orderHistoryFragment" />
+        <action
+            android:id="@+id/action_descriptionFragment_to_profileFragment"
+            app:destination="@id/profile" />
     </fragment>
     <fragment
         android:id="@+id/allDoneFragment"
@@ -133,6 +154,9 @@
         <action
             android:id="@+id/action_allDoneFragment_to_about"
             app:destination="@id/about" />
+        <action
+            android:id="@+id/action_allDoneFragment_to_profileFragment"
+            app:destination="@id/profile" />
     </fragment>
     <fragment
         android:id="@+id/orderHistoryFragment"
@@ -145,6 +169,9 @@
         <action
             android:id="@+id/action_orderHistoryFragment_to_specificOrderFragment"
             app:destination="@id/specificOrderFragment" />
+        <action
+            android:id="@+id/action_orderHistoryFragment_to_profileFragment"
+            app:destination="@id/profile" />
     </fragment>
     <fragment
         android:id="@+id/specificOrderFragment"
@@ -156,6 +183,21 @@
             app:destination="@id/about" />
         <action
             android:id="@+id/action_specificOrderFragment_to_orderHistoryFragment"
+            app:destination="@id/orderHistoryFragment" />
+        <action
+            android:id="@+id/action_specificOrderFragment_to_profileFragment"
+            app:destination="@id/profile" />
+    </fragment>
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.example.pewpew.view.main.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_about"
+            app:destination="@id/about" />
+        <action
+            android:id="@+id/action_profileFragment_to_orderHistoryFragment"
             app:destination="@id/orderHistoryFragment" />
     </fragment>
 </navigation>
