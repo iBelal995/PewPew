@@ -19,8 +19,7 @@ import com.google.firebase.auth.FirebaseUser
 class RegisterActivity : AppCompatActivity() {
     //    private val validator = RegisterValdiation()
     private lateinit var binding: ActivityRegisterBinding
-
-
+      var registerValdiation = RegisterValdiation()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
@@ -33,14 +32,14 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
         emailFocusListener()
         passwordFocusListener()
-        validconfirmPassword()
+        registerValdiation.validconfirmPassword(binding.confirmpasswordEditText.text.toString())
         binding.registerButton.setOnClickListener { submitForm() }
     }
 
     private fun submitForm() {
-        binding.emailContainer.helperText = validEmail()
-        binding.passwordContainer.helperText = validPassword()
-        binding.cofirmpasswordContainer.helperText = validconfirmPassword()
+        binding.emailContainer.helperText = registerValdiation.validEmail(binding.emailEditText.text.toString())
+        binding.passwordContainer.helperText = registerValdiation.validPassword(binding.passwordEditText.text.toString())
+        binding.cofirmpasswordContainer.helperText = registerValdiation.validconfirmPassword(binding.confirmpasswordEditText.text.toString())
 
 
         val validEmail = binding.emailContainer.helperText == null
@@ -94,62 +93,21 @@ class RegisterActivity : AppCompatActivity() {
     private fun emailFocusListener() {
         binding.emailEditText.setOnFocusChangeListener { _, focused ->
             if (!focused) {
-                binding.emailContainer.helperText = validEmail()
+                binding.emailContainer.helperText = registerValdiation.validEmail(binding.emailEditText.text.toString())
             }
         }
     }
 
-    private fun validEmail(): String? {
-        val emailText = binding.emailEditText.text.toString()
-        if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
-            return "Invalid Email Address"
-        }
-        return null
-    }
 
     private fun passwordFocusListener() {
         binding.passwordEditText.setOnFocusChangeListener { _, focused ->
             if (!focused) {
-                binding.passwordContainer.helperText = validPassword()
+                binding.passwordContainer.helperText = registerValdiation.validPassword(binding.passwordEditText.text.toString())
             }
         }
     }
 
-    private fun validPassword(): String? {
-        val passwordText = binding.passwordEditText.text.toString()
-        if (passwordText.length < 8) {
-            return "Minimum 8 Character Password"
-        }
-        if (!passwordText.matches(".*[A-Z].*".toRegex())) {
-            return "Must Contain 1 Upper-case Character"
-        }
-        if (!passwordText.matches(".*[a-z].*".toRegex())) {
-            return "Must Contain 1 Lower-case Character"
-        }
-        if (!passwordText.matches(".*[@#\$%^&+=].*".toRegex())) {
-            return "Must Contain 1 Special Character (@#\$%^&+=)"
-        }
 
-        return null
-    }
-
-    private fun validconfirmPassword(): String? {
-        val passwordText = binding.confirmpasswordEditText.text.toString()
-        if (passwordText.length < 8) {
-            return "Minimum 8 Character Password"
-        }
-        if (!passwordText.matches(".*[A-Z].*".toRegex())) {
-            return "Must Contain 1 Upper-case Character"
-        }
-        if (!passwordText.matches(".*[a-z].*".toRegex())) {
-            return "Must Contain 1 Lower-case Character"
-        }
-        if (!passwordText.matches(".*[@#\$%^&+=].*".toRegex())) {
-            return "Must Contain 1 Special Character (@#\$%^&+=)"
-        }
-
-        return null
-    }
 
 
 //        val emailAddress: EditText = findViewById(R.id.emailEditText)

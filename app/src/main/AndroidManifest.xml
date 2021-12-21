@@ -12,18 +12,23 @@
         android:theme="@style/Theme.PewPew">
         <activity
             android:name=".view.ForgetPasswordActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name="com.example.firebaseauthantication.LoginActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name="com.example.firebaseauthantication.RegisterActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".view.MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".view.Splash"
+            android:screenOrientation="portrait"
             android:exported="true"
             android:theme="@style/Splash">
             <intent-filter>
