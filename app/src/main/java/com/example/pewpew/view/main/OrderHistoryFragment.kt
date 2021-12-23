@@ -11,6 +11,8 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import com.example.pewpew.R
 import com.example.pewpew.databinding.FragmentOrderHistoryBinding
 import com.example.pewpew.model.HistoryModel
 import com.example.pewpew.model.menumodel.MenuModelItem
@@ -47,15 +49,7 @@ class OrderHistoryFragment : Fragment() {
         activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             private var doubleBackToExitPressedOnce = false
             override fun handleOnBackPressed() {
-                if (doubleBackToExitPressedOnce) {
-                    requireActivity().finish()
-                    return
-                }
-
-                this.doubleBackToExitPressedOnce = true
-                Toast.makeText(requireActivity(), "Please click BACK again to exit", Toast.LENGTH_SHORT).show()
-
-                Handler(Looper.getMainLooper()).postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
+             findNavController().navigate(R.id.action_orderHistoryFragment_to_mainFragment)
             }
         })
     }

@@ -172,6 +172,9 @@
         <action
             android:id="@+id/action_orderHistoryFragment_to_profileFragment"
             app:destination="@id/profile" />
+        <action
+            android:id="@+id/action_orderHistoryFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/specificOrderFragment"
