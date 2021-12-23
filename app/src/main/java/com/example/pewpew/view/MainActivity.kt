@@ -14,8 +14,10 @@ import android.os.Handler
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
@@ -56,16 +58,31 @@ class MainActivity : AppCompatActivity() {
             popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
                 when(item.itemId) {
                     R.id.signout ->{
-                        sharedPref = this.getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
-                        sharedPrefEditor = sharedPref.edit()
-                        sharedPrefEditor.putBoolean("state", false)
-                        sharedPrefEditor.commit()
+                        val alertDialog = AlertDialog
+                .Builder(this,R.style.AlertDialogTheme)
+                .setTitle("Sign Out")
+                .setMessage("Are you sure you want to Sign Out")
+            alertDialog.setPositiveButton("Yes") { _, _ ->
+                sharedPref = this.getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
+                sharedPrefEditor = sharedPref.edit()
+                sharedPrefEditor.putBoolean("state", false)
+                sharedPrefEditor.commit()
+                FirebaseAuth.getInstance().signOut()
+                Toast.makeText(this@MainActivity, "signed out", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, LoginActivity::class.java))
+                finish()
 
-                        FirebaseAuth.getInstance().signOut()
-                        Toast.makeText(this@MainActivity, "signed out", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, LoginActivity::class.java))
-                    finish()
-                    }
+            }
+
+            alertDialog.setNegativeButton("No") { dialog, _ ->
+                dialog.cancel()
+            }
+
+            alertDialog.create().show()
+
+        }
+
+
 
                     R.id.about ->{
                         val fragment = navHostFragment.childFragmentManager.primaryNavigationFragment
