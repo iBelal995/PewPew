@@ -35,9 +35,7 @@ class CartFragment : Fragment() {
      var autogenerate = (1..1000000).random()
     var totalAmount:Double = 0.0
     private var cartList = listOf<CartModel>()
-    lateinit var handler: Handler
     private val cartViewModel: CartFreagmentViewModel by activityViewModels()
-    private val dViewModel: DescriptionViewModel by activityViewModels()
     private lateinit var cartFragmentAdapter: CartRecyclerViewAdapter
     private lateinit var binding: FragmentCartBinding
     override fun onCreate(savedInstanceState: Bundle?) {

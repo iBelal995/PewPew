@@ -1,11 +1,14 @@
 package com.example.pewpew.view.main
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.pewpew.databinding.FragmentOrderHistoryBinding
@@ -40,6 +43,21 @@ class OrderHistoryFragment : Fragment() {
         historyFragmentAdapter = HistoryRecyclerViewAdapter(historyViewModel)
         binding.recyclerViewHistory.adapter= historyFragmentAdapter
         historyViewModel.callHistory()
+
+        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            private var doubleBackToExitPressedOnce = false
+            override fun handleOnBackPressed() {
+                if (doubleBackToExitPressedOnce) {
+                    requireActivity().finish()
+                    return
+                }
+
+                this.doubleBackToExitPressedOnce = true
+                Toast.makeText(requireActivity(), "Please click BACK again to exit", Toast.LENGTH_SHORT).show()
+
+                Handler(Looper.getMainLooper()).postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
+            }
+        })
     }
     fun observers(){
         historyViewModel.historyLiveData.observe(viewLifecycleOwner,{

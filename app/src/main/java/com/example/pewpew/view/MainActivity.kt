@@ -131,10 +131,14 @@ class MainActivity : AppCompatActivity() {
 
         allDoneViewModel.timeLiveData.observe(this,{ it
 
-            handler = Handler()
-            handler.postDelayed({
-                notifi()
-                      }, it.toLong())
+            it?.let {
+                handler = Handler()
+                handler.postDelayed({
+                    notifi()
+                    allDoneViewModel.timeLiveData.postValue(null)
+
+                }, it.toLong())
+            }
         })
 
     }
@@ -161,6 +165,7 @@ class MainActivity : AppCompatActivity() {
                 .setSmallIcon(R.drawable.logopewpew)
                 .setLargeIcon(BitmapFactory.decodeResource(this.resources, R.drawable.logopewpew))
         }
+        allDoneViewModel.timeLiveData.postValue(null)
         notificationManager.notify(1234, builder.build())
     }
     }
