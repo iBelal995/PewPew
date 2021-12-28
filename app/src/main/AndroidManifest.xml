@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.pewpew">
+    package="com.belal.pewpew">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -15,11 +15,11 @@
             android:screenOrientation="portrait"
             android:exported="true" />
         <activity
-            android:name="com.example.firebaseauthantication.LoginActivity"
+            android:name="com.belal.firebaseauthantication.LoginActivity"
             android:screenOrientation="portrait"
             android:exported="true" />
         <activity
-            android:name="com.example.firebaseauthantication.RegisterActivity"
+            android:name="com.belal.firebaseauthantication.RegisterActivity"
             android:screenOrientation="portrait"
             android:exported="true" />
         <activity

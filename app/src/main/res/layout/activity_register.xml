@@ -7,7 +7,7 @@
     android:background="@drawable/splash"
     android:backgroundTint="#E6FFFFFF"
     android:backgroundTintMode="src_over"
-    tools:context="com.example.firebaseauthantication.RegisterActivity">
+    tools:context="com.belal.firebaseauthantication.RegisterActivity">
 
     <pl.droidsonroids.gif.GifImageView
         android:layout_width="100dp"

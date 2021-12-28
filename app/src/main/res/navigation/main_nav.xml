@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.pewpew.view.main.MainFragment"
+        android:name="com.belal.pewpew.view.main.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/cartFrgament"
-        android:name="com.example.pewpew.view.main.CartFragment"
+        android:name="com.belal.pewpew.view.main.CartFragment"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" >
         <action
@@ -58,7 +58,7 @@
     </fragment>
     <fragment
         android:id="@+id/about"
-        android:name="com.example.pewpew.view.main.AboutFragment"
+        android:name="com.belal.pewpew.view.main.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" >
         <action
@@ -70,7 +70,7 @@
     </fragment>
     <fragment
         android:id="@+id/allFragment"
-        android:name="com.example.pewpew.view.main.AllFragment"
+        android:name="com.belal.pewpew.view.main.AllFragment"
         android:label="fragment_all"
         tools:layout="@layout/fragment_all" >
         <action
@@ -88,7 +88,7 @@
     </fragment>
     <fragment
         android:id="@+id/sideOrderFragment"
-        android:name="com.example.pewpew.view.main.SideOrderFragment"
+        android:name="com.belal.pewpew.view.main.SideOrderFragment"
         android:label="fragment_side_order"
         tools:layout="@layout/fragment_side_order" >
         <action
@@ -106,7 +106,7 @@
     </fragment>
     <fragment
         android:id="@+id/burgersFragment"
-        android:name="com.example.pewpew.view.main.BurgersFragment"
+        android:name="com.belal.pewpew.view.main.BurgersFragment"
         android:label="fragment_burgers"
         tools:layout="@layout/fragment_burgers" >
         <action
@@ -124,7 +124,7 @@
     </fragment>
     <fragment
         android:id="@+id/descriptionFragment"
-        android:name="com.example.pewpew.view.main.DescriptionFragment"
+        android:name="com.belal.pewpew.view.main.DescriptionFragment"
         android:label="fragment_description"
         tools:layout="@layout/fragment_description" >
         <action
@@ -142,7 +142,7 @@
     </fragment>
     <fragment
         android:id="@+id/allDoneFragment"
-        android:name="com.example.pewpew.view.main.AllDoneFragment"
+        android:name="com.belal.pewpew.view.main.AllDoneFragment"
         android:label="fragment_all_done"
         tools:layout="@layout/fragment_all_done" >
         <action
@@ -160,7 +160,7 @@
     </fragment>
     <fragment
         android:id="@+id/orderHistoryFragment"
-        android:name="com.example.pewpew.view.main.OrderHistoryFragment"
+        android:name="com.belal.pewpew.view.main.OrderHistoryFragment"
         android:label="fragment_order_history"
         tools:layout="@layout/fragment_order_history" >
         <action
@@ -178,7 +178,7 @@
     </fragment>
     <fragment
         android:id="@+id/specificOrderFragment"
-        android:name="com.example.pewpew.view.main.SpecificOrderFragment"
+        android:name="com.belal.pewpew.view.main.SpecificOrderFragment"
         android:label="fragment_specific_order"
         tools:layout="@layout/fragment_specific_order" >
         <action
@@ -193,7 +193,7 @@
     </fragment>
     <fragment
         android:id="@+id/profile"
-        android:name="com.example.pewpew.view.main.ProfileFragment"
+        android:name="com.belal.pewpew.view.main.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action

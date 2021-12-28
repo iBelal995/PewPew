@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:648960559339:android:2225bae9672a678d6056ae",
+        "mobilesdk_app_id": "1:648960559339:android:64f29cc4f51c58f76056ae",
         "android_client_info": {
-          "package_name": "com.example.pewpew"
+          "package_name": "com.belal.pewpew"
         }
       },
       "oauth_client": [
