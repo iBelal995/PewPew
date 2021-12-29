@@ -37,7 +37,6 @@ Pew Pew is a software app that is used for ordering delicious food online .
 * [Lifecycles][3] 
 * [LiveData][4]
 * [Navigation][5] 
-* [Room Database][6] 
 * [ViewModel][7] 
 * [UI][9] 
   * [Fragment][11] 
