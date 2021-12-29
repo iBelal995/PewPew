@@ -2,7 +2,7 @@
 ![image](https://user-images.githubusercontent.com/91452283/140028219-e6c1e5a4-7e88-4e9a-86cb-1b1e76542cad.png)
 ## Description : 
 
-Pew Pew is a software app that is used for ordering food online .
+Pew Pew is a software app that is used for ordering delicious food online .
 
 <img src="https://user-images.githubusercontent.com/91452283/147641402-4395a5ef-03e2-4cb6-a513-5572f2000c1b.png" width="150" height="150">
 
