@@ -73,8 +73,8 @@ Pew Pew is a software app that is used for ordering delicious food online .
 
 ##  Features
 
-* Quantity change : Changing the quantity of an item when ordering, either from the menu or from the cart page, is simple.
 * Registeration : Create an account by email & password.
+* Quantity change : Changing the quantity of an item when ordering, either from the menu or from the cart page, is simple.
 * Order history : Access to order history, including when and what you ordered. 
 * Navigation : Google Maps access to lead the user to the restaurant.
 * Time remaining : The user can see how much time is left till the food is ready.
