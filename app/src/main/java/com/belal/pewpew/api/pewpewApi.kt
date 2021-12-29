@@ -8,6 +8,26 @@ import retrofit2.Response
 import retrofit2.http.*
 
 interface pewpewApi {
+    /***
+     * REQUEST METHOD
+    Every method must have an HTTP annotation that provides the request method and relative URL.
+    There are eight built-in annotations: HTTP, GET, POST, PUT, PATCH, DELETE, OPTIONS and HEAD.
+    The relative URL of the resource is specified in the annotation.
+     * */
+
+
+    /** Authorization
+     * As a security measure,
+     * most API access points require users to provide an authentication
+     * token that can be used to verify the identity of the user making the request so as to grant
+     * them access to data/ resources from the backend. The client app usually fetches the token upon successful login
+     * or registration then saves the token locally and appends it to subsequent requests
+     * so that the server can authenticate the user.
+     * */
+    /***
+     * Query parameters are added with the @Query annotation on a method parameter.
+     * They are automatically added at the end of the URL.
+     * */
 
     @GET("/menu")
     suspend fun getMenu(

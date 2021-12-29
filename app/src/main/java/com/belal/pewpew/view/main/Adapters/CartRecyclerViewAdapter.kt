@@ -17,7 +17,6 @@ import com.squareup.picasso.Picasso
 
 class CartRecyclerViewAdapter(val viewModel: CartFreagmentViewModel) :
     RecyclerView.Adapter<CartRecyclerViewAdapter.CartViewHolder>() {
-    lateinit var itemcart:CartModel
     val DIFF_CALL_BACK = object : DiffUtil.ItemCallback<CartModel>() {
         override fun areItemsTheSame(oldItem: CartModel, newItem: CartModel): Boolean {
             return oldItem.id == newItem.id

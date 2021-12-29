@@ -45,6 +45,9 @@ class AllFragment : Fragment() {
         allViewModel.callMenu()
 
     }
+    /***
+     * To get posted value from AllFragment view model
+     * */
     fun observers(){
         allViewModel.menuLiveData.observe(viewLifecycleOwner,{
             binding.progressBarAll.animate().alpha(0f).duration=1000

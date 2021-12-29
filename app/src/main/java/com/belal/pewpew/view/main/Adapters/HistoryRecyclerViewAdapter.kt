@@ -60,7 +60,10 @@ class HistoryRecyclerViewAdapter(val viewmodel:OrderHistoryViewModel) :
         return differ.currentList.size
     }
     fun submitList(list: List<HistoryModel>) {
-
+        /** distinctBy
+Returns a sequence containing only elements from the given sequence having distinct keys returned by the given selector function.
+Among elements of the given sequence with equal keys, only the first one will be present in the resulting sequence.
+ The elements in the resulting sequence are in the same order as they were in the source sequence.*/
         differ.submitList(list.distinctBy { it.ordernumber })
     }
     class HistoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

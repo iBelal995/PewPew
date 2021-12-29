@@ -71,13 +71,19 @@ class AllDoneFragment : Fragment() {
 
         }
     fun time(){
+        //Schedule a countdown until a time in the future, with regular notifications on intervals along the way.
          timer = object: CountDownTimer(10000, 1000) {
+             /*
+             The calls to onTick(long) are synchronized to this object so that one call to onTick(long) won't ever occur before
+              the previous callback is complete. This is only relevant when the implementation of onTick(long) takes an amount of time to
+               execute that is significant compared to the countdown interval.*/
             override fun onTick(millisUntilFinished: Long) {
                 remainingTime = millisUntilFinished
                 binding.count.setText("Time remaining: ${remainingTime / 1000}s")
 
             }
             override fun onFinish() {
+                //Callback fired when the time is up.
                 binding.progressBar.visibility = View.VISIBLE
                 binding.progressBar.animate().alpha(0f).duration=1000
                 binding.textView26.setText("All Done !! Your food is ready ")
@@ -104,6 +110,7 @@ class AllDoneFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
+        //Cancel the countdown.
         timer.cancel()
 //        allDoneViewModel.timeLiveData.postValue(remainingTime.toInt())
 

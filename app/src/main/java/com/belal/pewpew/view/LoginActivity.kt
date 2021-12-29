@@ -40,7 +40,21 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, RegisterActivity::class.java))
 
         }
-
+        /*
+           * what can SharedPreferences do?
+           * SharedPreferences offers a framework to save persistent data in key-value pairs.
+           * It works for any primitive data type (meaning booleans, ints, longs, floats, and strings).
+           * Which also means that it’s pretty simple to work with.
+           * */
+        /**
+         * Calling getSharedPreferences() enables you to retrieve a file by name,
+         * which means you can have multiple files.
+         * */
+        /*
+        * Read from SharedPreferences
+        * Reading a value is straightforward. You just need to call the relevant get method (again).
+        * So, calling getBoolean() will return the Boolean value associated with that key.
+        * */
         sharedPref = this.getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
         if (sharedPref.getBoolean("state", false)){
             val intent = Intent(this, MainActivity::class.java)
