@@ -1,4 +1,4 @@
-package com.belal.pewpew.view.main
+package com.belal.pewpew.view.main.fragments
 
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -14,6 +14,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.belal.pewpew.R
 import com.belal.pewpew.databinding.FragmentAllDoneBinding
+import com.belal.pewpew.view.main.viewmodels.AllDoneViewModel
 
 class AllDoneFragment : Fragment() {
     private val allDoneViewModel: AllDoneViewModel by activityViewModels()

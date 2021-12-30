@@ -1,24 +1,19 @@
-package com.belal.pewpew.view.main
+package com.belal.pewpew.view.main.viewmodels
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.belal.pewpew.model.CartModel
 import com.belal.pewpew.model.HistoryModel
-import com.belal.pewpew.model.menumodel.MenuModelItem
 import com.belal.pewpew.repository.ApiServicesRepository
-import com.belal.pewpew.view.main.Adaptersimport.CartRecyclerViewAdapter
-import com.belal.pewpew.view.main.Adaptersimport.HistoryRecyclerViewAdapter
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.*
 
 private const val TAG = "OrderHistoryViewModel"
 
 class OrderHistoryViewModel : ViewModel() {
-    private val apiService = ApiServicesRepository.get()
+    private val apiService = ApiServicesRepository
     val historyLiveData = MutableLiveData<List<HistoryModel>>()
     val historyxlLiveData = MutableLiveData<List<HistoryModel>>()
     val historyErrorLiveData = MutableLiveData<String>()

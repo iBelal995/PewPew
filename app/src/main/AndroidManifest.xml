@@ -10,23 +10,23 @@
         android:supportsRtl="false"
         android:theme="@style/Theme.PewPew">
         <activity
-            android:name=".view.ForgetPasswordActivity"
+            android:name=".view.main.activites.ForgetPasswordActivity"
             android:screenOrientation="portrait"
             android:exported="true" />
         <activity
-            android:name="com.belal.firebaseauthantication.LoginActivity"
+            android:name=".view.main.activites.LoginActivity"
             android:screenOrientation="portrait"
             android:exported="true" />
         <activity
-            android:name="com.belal.firebaseauthantication.RegisterActivity"
+            android:name=".view.main.activites.RegisterActivity"
             android:screenOrientation="portrait"
             android:exported="true" />
         <activity
-            android:name=".view.MainActivity"
+            android:name=".view.main.activites.MainActivity"
             android:screenOrientation="portrait"
             android:exported="true" />
         <activity
-            android:name=".view.Splash"
+            android:name=".view.main.activites.Splash"
             android:screenOrientation="portrait"
             android:exported="true"
             android:theme="@style/Splash">

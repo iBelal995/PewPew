@@ -1,4 +1,4 @@
-package com.belal.pewpew.view.main
+package com.belal.pewpew.view.main.viewmodels
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -19,7 +19,7 @@ class CartFreagmentViewModel : ViewModel() {
     val CartErrorLiveData = MutableLiveData<String>()
     val historyxlLiveData = MutableLiveData<HistoryModel>()
     val historyErrorLiveData = MutableLiveData<String>()
-    private val apiService = ApiServicesRepository.get()
+    private val apiService = ApiServicesRepository
     val userid: String = FirebaseAuth.getInstance().currentUser?.uid ?: "Error"
     fun getCart() {
         viewModelScope.launch(Dispatchers.IO) {

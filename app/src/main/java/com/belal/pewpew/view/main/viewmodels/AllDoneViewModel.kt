@@ -1,4 +1,4 @@
-package com.belal.pewpew.view.main
+package com.belal.pewpew.view.main.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

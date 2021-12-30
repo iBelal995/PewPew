@@ -1,4 +1,4 @@
-package com.belal.pewpew.view.main
+package com.belal.pewpew.view.main.viewmodels
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -11,22 +11,21 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
+private const val TAG = "BuregersFragment"
 
-private const val TAG = "SideOrderFragment"
-
-class SideOrderFragmentViewModel : ViewModel() {
-    private val apiService = ApiServicesRepository.get()
+class BurgersFragmentViewModel : ViewModel() {
+    private val apiService = ApiServicesRepository
 
     val menuLiveData = MutableLiveData<List<MenuModelItem>>()
     val menuErrorLiveData = MutableLiveData<String>()
     val CartLiveData = MutableLiveData<CartModel>()
     val CartErrorLiveData = MutableLiveData<String>()
-    var selectedItemId = MutableLiveData<MenuModelItem>()
+
     fun callMenu() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-
-                val response = apiService.getMenu("sideorder")
+                //to get the burger menu specifically
+                val response = apiService.getMenu("burger")
                 if (response.isSuccessful) {
                     response.body()?.run {
                         Log.d(TAG, response.body().toString())

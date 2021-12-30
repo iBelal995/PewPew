@@ -8,7 +8,7 @@
     android:background="@drawable/splash"
     android:backgroundTint="#E6FFFFFF"
     android:backgroundTintMode="src_over"
-    tools:context="com.belal.firebaseauthantication.LoginActivity">
+    tools:context=".view.main.activites.LoginActivity">
 
     <pl.droidsonroids.gif.GifImageView
         android:layout_width="100dp"

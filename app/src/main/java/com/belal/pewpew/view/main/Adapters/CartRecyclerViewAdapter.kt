@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.belal.pewpew.R
 import com.belal.pewpew.model.CartModel
-import com.belal.pewpew.view.main.CartFreagmentViewModel
+import com.belal.pewpew.view.main.viewmodels.CartFreagmentViewModel
 import com.squareup.picasso.Picasso
 
 class CartRecyclerViewAdapter(val viewModel: CartFreagmentViewModel) :

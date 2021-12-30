@@ -1,16 +1,14 @@
 package com.belal.pewpew.view.main.Adaptersimport
 
-import com.belal.pewpew.R
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.belal.pewpew.R
 import com.belal.pewpew.model.HistoryModel
 import com.squareup.picasso.Picasso
 

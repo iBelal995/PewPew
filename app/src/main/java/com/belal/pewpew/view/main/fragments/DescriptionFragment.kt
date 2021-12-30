@@ -1,25 +1,16 @@
-package com.belal.pewpew.view.main
+package com.belal.pewpew.view.main.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.Toast
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.belal.pewpew.R
-import com.belal.pewpew.databinding.FragmentAboutBinding
-import com.belal.pewpew.databinding.FragmentAllBinding
 import com.belal.pewpew.databinding.FragmentDescriptionBinding
-import com.belal.pewpew.model.menumodel.MenuModelItem
-import com.belal.pewpew.view.main.Adapters.AllRecyclerVireAdapter
-import com.belal.pewpew.view.main.Adaptersimport.SideOrderRecyclerViewAdapter
+import com.belal.pewpew.view.main.viewmodels.DescriptionViewModel
 import com.squareup.picasso.Picasso
-import java.util.Observer
 
 private lateinit var binding: FragmentDescriptionBinding
 

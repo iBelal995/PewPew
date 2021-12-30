@@ -1,4 +1,4 @@
-package com.belal.pewpew.view.main
+package com.belal.pewpew.view.main.fragments
 
 import android.os.Bundle
 import android.os.Handler
@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.belal.pewpew.R
 import com.belal.pewpew.databinding.FragmentMainBinding
 import com.belal.pewpew.model.menumodel.MenuModelItem
+import com.belal.pewpew.view.main.viewmodels.DescriptionViewModel
 
 
 class MainFragment : Fragment() {

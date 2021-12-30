@@ -17,8 +17,8 @@ import com.belal.pewpew.R
 import com.belal.pewpew.model.CartModel
 import com.belal.pewpew.model.menumodel.MenuModelItem
 import com.belal.pewpew.view.main.Adapters.TAG
-import com.belal.pewpew.view.main.DescriptionViewModel
-import com.belal.pewpew.view.main.SideOrderFragmentViewModel
+import com.belal.pewpew.view.main.viewmodels.DescriptionViewModel
+import com.belal.pewpew.view.main.viewmodels.SideOrderFragmentViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 

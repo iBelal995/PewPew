@@ -1,4 +1,4 @@
-package com.belal.pewpew.view.main
+package com.belal.pewpew.view.main.fragments
 
 import android.content.Intent
 import android.net.Uri

@@ -1,4 +1,4 @@
-package com.belal.pewpew.view.main
+package com.belal.pewpew.view.main.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -8,13 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import com.belal.pewpew.R
-import com.belal.pewpew.databinding.FragmentAllBinding
-import com.belal.pewpew.databinding.FragmentBurgersBinding
 import com.belal.pewpew.databinding.FragmentSideOrderBinding
 import com.belal.pewpew.model.menumodel.MenuModelItem
-import com.belal.pewpew.view.main.Adaptersimport.BurgersRecyclerViewAdapter
 import com.belal.pewpew.view.main.Adaptersimport.SideOrderRecyclerViewAdapter
+import com.belal.pewpew.view.main.viewmodels.DescriptionViewModel
+import com.belal.pewpew.view.main.viewmodels.SideOrderFragmentViewModel
 
 private const val TAG = "SideOrderFragment"
 

@@ -1,4 +1,4 @@
-package com.belal.pewpew.view.main
+package com.belal.pewpew.view.main.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -10,8 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.belal.pewpew.databinding.FragmentBurgersBinding
 import com.belal.pewpew.model.menumodel.MenuModelItem
-import com.belal.pewpew.view.main.Adapters.AllRecyclerVireAdapter
 import com.belal.pewpew.view.main.Adaptersimport.BurgersRecyclerViewAdapter
+import com.belal.pewpew.view.main.viewmodels.BurgersFragmentViewModel
+import com.belal.pewpew.view.main.viewmodels.DescriptionViewModel
 
 private const val TAG = "BurgersFragment"
 

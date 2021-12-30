@@ -1,6 +1,5 @@
 package com.belal.pewpew.repository
 
-import android.content.Context
 import com.belal.pewpew.api.pewpewApi
 import com.belal.pewpew.model.CartModel
 import com.belal.pewpew.model.HistoryModel
@@ -10,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 private const val BASE_URL = "https://61adff11a7c7f3001786f535.mockapi.io/"
 
 //A Repository class handles data operations
-class ApiServicesRepository(context: Context) {
+object ApiServicesRepository {
     // bulid Api
     private val retrofitService = Retrofit.Builder()
         .baseUrl(BASE_URL)
@@ -30,16 +29,4 @@ class ApiServicesRepository(context: Context) {
     suspend fun getHistory(userid: String) = retrofitApi.getHistory(userid)
     suspend fun getHistorySpec(ordernumber: Int) = retrofitApi.getHistoryspec(ordernumber)
 
-    // this companion object for restricts the instantiation of a class to one "single" instance.
-    companion object {
-        private var instance: ApiServicesRepository? = null
-        fun init(context: Context) {
-            if (instance == null)
-                instance = ApiServicesRepository(context)
-        }
-
-        fun get(): ApiServicesRepository {
-            return instance ?: throw Exception("ApiServicesRepository must be initialized")
-        }
-    }
 }

@@ -1,4 +1,4 @@
-package com.belal.pewpew.view.main
+package com.belal.pewpew.view.main.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +11,8 @@ import androidx.fragment.app.activityViewModels
 import com.belal.pewpew.databinding.FragmentAllBinding
 import com.belal.pewpew.model.menumodel.MenuModelItem
 import com.belal.pewpew.view.main.Adapters.AllRecyclerVireAdapter
+import com.belal.pewpew.view.main.viewmodels.AllFragmentViewModel
+import com.belal.pewpew.view.main.viewmodels.DescriptionViewModel
 
 
 private const val TAG = "AllFragment"

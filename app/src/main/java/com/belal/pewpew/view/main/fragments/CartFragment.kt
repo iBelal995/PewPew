@@ -1,14 +1,6 @@
-package com.belal.pewpew.view.main
+package com.belal.pewpew.view.main.fragments
 
-import android.app.Notification
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.content.Context
-import android.graphics.BitmapFactory
-import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -22,11 +14,10 @@ import com.belal.pewpew.R
 import com.belal.pewpew.databinding.FragmentCartBinding
 import com.belal.pewpew.model.CartModel
 import com.belal.pewpew.model.HistoryModel
-import com.belal.pewpew.model.menumodel.MenuModelItem
 import com.belal.pewpew.view.main.Adaptersimport.CartRecyclerViewAdapter
+import com.belal.pewpew.view.main.viewmodels.CartFreagmentViewModel
 import com.google.firebase.auth.FirebaseAuth
 import java.util.*
-import kotlin.properties.Delegates
 
 
 private const val TAG = "CartFragment"

@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.belal.pewpew.R
 import com.belal.pewpew.model.CartModel
 import com.belal.pewpew.model.menumodel.MenuModelItem
-import com.belal.pewpew.view.main.AllFragmentViewModel
-import com.belal.pewpew.view.main.DescriptionViewModel
+import com.belal.pewpew.view.main.viewmodels.AllFragmentViewModel
+import com.belal.pewpew.view.main.viewmodels.DescriptionViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 

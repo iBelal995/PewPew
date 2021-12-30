@@ -12,13 +12,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.belal.pewpew.R
 import com.belal.pewpew.model.HistoryModel
-import com.belal.pewpew.view.main.Adapters.TAG
-import com.belal.pewpew.view.main.CartFragment
-import com.belal.pewpew.view.main.OrderHistoryViewModel
+import com.belal.pewpew.view.main.viewmodels.OrderHistoryViewModel
 import java.text.SimpleDateFormat
 
 const val TAG1 = "ADAPTERhistory"
-private var historyList = listOf<HistoryModel>()
 
 class HistoryRecyclerViewAdapter(val viewmodel: OrderHistoryViewModel) :
     RecyclerView.Adapter<HistoryRecyclerViewAdapter.HistoryViewHolder>() {

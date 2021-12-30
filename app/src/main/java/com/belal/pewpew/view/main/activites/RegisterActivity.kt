@@ -1,18 +1,12 @@
-package com.belal.firebaseauthantication
+package com.belal.pewpew.view.main.activites
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Patterns
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import com.belal.pewpew.R
 import com.belal.pewpew.databinding.ActivityRegisterBinding
 import com.belal.pewpew.util.RegisterValdiation
-import com.belal.pewpew.view.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 

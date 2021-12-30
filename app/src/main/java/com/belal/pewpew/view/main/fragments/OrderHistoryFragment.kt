@@ -1,8 +1,6 @@
-package com.belal.pewpew.view.main
+package com.belal.pewpew.view.main.fragments
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,9 +13,8 @@ import androidx.navigation.fragment.findNavController
 import com.belal.pewpew.R
 import com.belal.pewpew.databinding.FragmentOrderHistoryBinding
 import com.belal.pewpew.model.HistoryModel
-import com.belal.pewpew.model.menumodel.MenuModelItem
-import com.belal.pewpew.view.main.Adaptersimport.CartRecyclerViewAdapter
 import com.belal.pewpew.view.main.Adaptersimport.HistoryRecyclerViewAdapter
+import com.belal.pewpew.view.main.viewmodels.OrderHistoryViewModel
 
 private lateinit var historyFragmentAdapter: HistoryRecyclerViewAdapter
 private const val TAG = "HistoryFragment"

@@ -6,4 +6,4 @@
     android:layout_height="match_parent"
     android:background="@drawable/splash"
     android:backgroundTintMode="src_over"
-    tools:context=".view.Splash" />
+    tools:context=".view.main.activites.Splash" />

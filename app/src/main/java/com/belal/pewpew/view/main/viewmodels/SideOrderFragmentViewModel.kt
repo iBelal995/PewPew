@@ -1,4 +1,4 @@
-package com.belal.pewpew.view.main
+package com.belal.pewpew.view.main.viewmodels
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -11,27 +11,21 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-private const val TAG = "AllViewModel"
 
-class AllFragmentViewModel : ViewModel() {
-    private val apiService = ApiServicesRepository.get()
+private const val TAG = "SideOrderFragment"
 
-    /**
-     * The ViewModel is a class whose role is to provide data to the UI and survive configuration changes.
-     * A ViewModel acts as a communication center between the Repository and the UI.
-     * A ViewModel holds UI data in a lifecycle-conscious way that survives configuration changes.
-     * ViewModel is responsible for holding and processing all the data needed for the UI.*/
+class SideOrderFragmentViewModel : ViewModel() {
+    private val apiService = ApiServicesRepository
+
     val menuLiveData = MutableLiveData<List<MenuModelItem>>()
     val menuErrorLiveData = MutableLiveData<String>()
     val CartLiveData = MutableLiveData<CartModel>()
     val CartErrorLiveData = MutableLiveData<String>()
-
-    //to call the menu from the Api
     fun callMenu() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
 
-                val response = apiService.getMenu()
+                val response = apiService.getMenu("sideorder")
                 if (response.isSuccessful) {
                     response.body()?.run {
                         Log.d(TAG, response.body().toString())
@@ -50,7 +44,6 @@ class AllFragmentViewModel : ViewModel() {
         }
     }
 
-    //to add the items to the cart
     fun addToCart(item: CartModel) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
