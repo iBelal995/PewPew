@@ -10,9 +10,7 @@ Pew Pew is a mobile app that is used for ordering delicious food online .
 
 <hr>
 
-### Software development lifecycle
-
-<img src="https://user-images.githubusercontent.com/91452283/140063117-e6dfcae8-dc42-4300-89cd-cd760809c347.png" width="150" height="150">
+### Planning & deveolpment
 
 - Planning :Time mangment, Brain Storming.
 - Analysis :The requirements , what i need , what i am going to do , what if 
@@ -35,7 +33,7 @@ Pew Pew is a mobile app that is used for ordering delicious food online .
 
 ### Libraries Used
 
-* [Architecture][1]
+* [MVVM Architecture](https://medium.com/@desai.krupa/why-to-choose-mvvm-android-architecture-9dc2cf9e6f91)
 * [LiveData][4]
 * [Navigation][5] 
 * [ViewModel][7] 
@@ -43,7 +41,6 @@ Pew Pew is a mobile app that is used for ordering delicious food online .
   * [Fragment][11] 
   * [Layout][12] 
 *  [Retrofit](https://square.github.io/retrofit/)
-* [MVVM Architecture](https://medium.com/@desai.krupa/why-to-choose-mvvm-android-architecture-9dc2cf9e6f91)
 * [DiffUtil](https://medium.com/tech-insider/diffutil-handling-recyclerview-smartly-ac3401d22903)
 * [SharedPrefrence](https://medium.com/google-developers/sharedpreferences-is-your-answer-to-simple-storage-a7c8499ea8ff)
 * [MockApi](https://mockapi.io/docs)
@@ -54,15 +51,15 @@ Pew Pew is a mobile app that is used for ordering delicious food online .
 
 ## User stories
 
-* As a user, I want to be able to access & browse the menus in easy way.
-* As a user, I want to change the quantity of an item i order.
-* As a user, I want to be able to get fast service in less time than other apps.
-* As a user, I want to be able to see the time remaining for my order.
-* As a user, I want my own account to access my order history. 
+* As a user, I want to display the list of menu, so that everyone can see the food menu.
+* As a user, I want to be able to change the quantity of an item, so that everyone can update the food quantity.
+* As a user, I want to be able to get fast service in less time than other apps, so that everyone can enjoy their food.
+* As a user, I want to be able to see the time remaining for my order, so that everyone can know how long they will wait.
+* As a user, I want my own account, so that everyone can  access thier order history. 
  
 <hr>
 
-## Screenshots Android Studio
+## Screenshots of the app
 
 <img src="https://user-images.githubusercontent.com/91452283/147642309-a6ce1d35-ffda-4fd0-97a3-ec541384a9e7.jpeg" width="250" height="380">
 <img src="https://user-images.githubusercontent.com/91452283/147642349-09f059e8-4749-4187-acff-d386ca50aa20.jpeg" width="250" height="380">
