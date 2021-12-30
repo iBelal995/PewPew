@@ -49,7 +49,7 @@ Pew Pew is a mobile app that is used for ordering delicious food online .
 
 <hr>
 
-## User stories
+## User Stories
 
 * As a user, I want to display the list of menu, so that everyone can see the food menu.
 * As a user, I want to be able to change the quantity of an item, so that everyone can update the food quantity.
@@ -59,7 +59,7 @@ Pew Pew is a mobile app that is used for ordering delicious food online .
  
 <hr>
 
-## Screenshots of the app
+## Screenshots of the App
 
 <img src="https://user-images.githubusercontent.com/91452283/147642309-a6ce1d35-ffda-4fd0-97a3-ec541384a9e7.jpeg" width="250" height="380">
 <img src="https://user-images.githubusercontent.com/91452283/147642349-09f059e8-4749-4187-acff-d386ca50aa20.jpeg" width="250" height="380">
