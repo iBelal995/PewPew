@@ -1,5 +1,7 @@
-# Pew Pew-project
+
 ![image](https://user-images.githubusercontent.com/91452283/140028219-e6c1e5a4-7e88-4e9a-86cb-1b1e76542cad.png)
+# Pew Pew-project
+
 ## Description : 
 
 Pew Pew is a software app that is used for ordering delicious food online .
@@ -34,10 +36,8 @@ Pew Pew is a software app that is used for ordering delicious food online .
 ### Libraries Used
 
 * [Architecture][1]
-* [Lifecycles][3] 
 * [LiveData][4]
 * [Navigation][5] 
-* [Room Database][6] 
 * [ViewModel][7] 
 * [UI][9] 
   * [Fragment][11] 
@@ -46,7 +46,6 @@ Pew Pew is a software app that is used for ordering delicious food online .
 * [MVVM Architecture](https://medium.com/@desai.krupa/why-to-choose-mvvm-android-architecture-9dc2cf9e6f91)
 * [DiffUtil](https://medium.com/tech-insider/diffutil-handling-recyclerview-smartly-ac3401d22903)
 * [SharedPrefrence](https://medium.com/google-developers/sharedpreferences-is-your-answer-to-simple-storage-a7c8499ea8ff)
-* [HTTP Request](https://www.restapitutorial.com/lessons/httpmethods.html)
 * [MockApi](https://mockapi.io/docs)
 * [Firebase](https://console.firebase.google.com/u/0/)
 * [Coroutines](https://developer.android.com/kotlin/coroutines?gclid=Cj0KCQiA15yNBhDTARIsAGnwe0X6_uiUGKPCcjYnxYqgNTosJ31FJI_HE0l4M_OBt_SfgY5OtwAcFMsaAu0uEALw_wcB&gclsrc=aw.ds)
@@ -71,10 +70,10 @@ Pew Pew is a software app that is used for ordering delicious food online .
 
 <hr>
 
-##  Favorite Functions
+##  Features
 
-* Quantity change : Changing the quantity of an item when ordering, either from the menu or from the cart page, is simple.
 * Registeration : Create an account by email & password.
+* Quantity change : Changing the quantity of an item when ordering, either from the menu or from the cart page, is simple.
 * Order history : Access to order history, including when and what you ordered. 
 * Navigation : Google Maps access to lead the user to the restaurant.
 * Time remaining : The user can see how much time is left till the food is ready.
@@ -85,7 +84,8 @@ Pew Pew is a software app that is used for ordering delicious food online .
 ##  Upcoming features
 * Search bar: You can search burgers by name.
 * Tracking system: You can track where and when your food will be ready and arrive to you.
-* Deliviry: You may choose a precise place for your delicious food, and it will be delivered to you.. 
+* Delivery: You may choose a precise place for your delicious food, and it will be delivered to you.
+* Profile: Create profile page for the user. 
 
 
 
