@@ -7,7 +7,7 @@
     android:background="@drawable/splash"
     android:backgroundTint="#E6FFFFFF"
     android:backgroundTintMode="src_over"
-    tools:context=".view.main.fragments.MainFragment">
+    tools:context=".view.main.homepage.MainFragment">
 
     <ScrollView
         android:layout_width="match_parent"

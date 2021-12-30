@@ -8,7 +8,7 @@
     android:backgroundTint="#E6FFFFFF"
     android:backgroundTintMode="src_over"
     android:padding="10dp"
-    tools:context=".view.main.fragments.AllDoneFragment">
+    tools:context=".view.main.homepage.AllDoneFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

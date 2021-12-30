@@ -9,7 +9,7 @@
     android:backgroundTint="#E6FFFFFF"
     android:backgroundTintMode="src_over"
     android:padding="10dp"
-    tools:context=".view.main.fragments.AboutFragment">
+    tools:context=".view.main.homepage.AboutFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

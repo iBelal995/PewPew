@@ -10,23 +10,23 @@
         android:supportsRtl="false"
         android:theme="@style/Theme.PewPew">
         <activity
-            android:name=".view.main.activites.ForgetPasswordActivity"
+            android:name=".view.main.identity.ForgetPasswordActivity"
             android:screenOrientation="portrait"
             android:exported="true" />
         <activity
-            android:name=".view.main.activites.LoginActivity"
+            android:name=".view.main.identity.LoginActivity"
             android:screenOrientation="portrait"
             android:exported="true" />
         <activity
-            android:name=".view.main.activites.RegisterActivity"
+            android:name=".view.main.identity.RegisterActivity"
             android:screenOrientation="portrait"
             android:exported="true" />
         <activity
-            android:name=".view.main.activites.MainActivity"
+            android:name=".view.main.MainActivity"
             android:screenOrientation="portrait"
             android:exported="true" />
         <activity
-            android:name=".view.main.activites.Splash"
+            android:name=".view.main.Splash"
             android:screenOrientation="portrait"
             android:exported="true"
             android:theme="@style/Splash">
