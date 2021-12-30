@@ -21,10 +21,6 @@ class BurgersFragment : Fragment() {
     private val dViewModel: DescriptionViewModel by activityViewModels()
     private lateinit var burgersFragmentAdapter: BurgersRecyclerViewAdapter
     private lateinit var binding: FragmentBurgersBinding
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,23 +34,25 @@ class BurgersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observers()
-        burgersFragmentAdapter = BurgersRecyclerViewAdapter(burgersViewModel,dViewModel,requireContext())
-        binding.recyclerViewBurgers.adapter= burgersFragmentAdapter
+        burgersFragmentAdapter =
+            BurgersRecyclerViewAdapter(burgersViewModel, dViewModel, requireContext())
+        binding.recyclerViewBurgers.adapter = burgersFragmentAdapter
         burgersViewModel.callMenu()
     }
-    fun observers(){
-        burgersViewModel.menuLiveData.observe(viewLifecycleOwner,{
-            binding.progressBarBurgers.animate().alpha(0f).duration=1000
-           burgersFragmentAdapter.submitList(it)
+
+    fun observers() {
+        burgersViewModel.menuLiveData.observe(viewLifecycleOwner, {
+            binding.progressBarBurgers.animate().alpha(0f).duration = 1000
+            burgersFragmentAdapter.submitList(it)
             menuList = it
-            Log.d(TAG,it.toString())
+            Log.d(TAG, it.toString())
             binding.recyclerViewBurgers.animate().alpha(1f)
         })
 
-        burgersViewModel.menuErrorLiveData.observe(viewLifecycleOwner,{
-            it?.let{
+        burgersViewModel.menuErrorLiveData.observe(viewLifecycleOwner, {
+            it?.let {
                 Toast.makeText(requireActivity(), it, Toast.LENGTH_LONG).show()
-                Log.d(TAG,it)
+                Log.d(TAG, it)
                 burgersViewModel.menuErrorLiveData.postValue(null)
 
             }

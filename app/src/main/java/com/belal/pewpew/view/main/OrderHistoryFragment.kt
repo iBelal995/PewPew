@@ -27,9 +27,7 @@ class OrderHistoryFragment : Fragment() {
     private lateinit var binding: FragmentOrderHistoryBinding
     private val historyViewModel: OrderHistoryViewModel by activityViewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,29 +41,32 @@ class OrderHistoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         observers()
         historyFragmentAdapter = HistoryRecyclerViewAdapter(historyViewModel)
-        binding.recyclerViewHistory.adapter= historyFragmentAdapter
+        binding.recyclerViewHistory.adapter = historyFragmentAdapter
+        //to call the order history
         historyViewModel.callHistory()
 
-        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
-            private var doubleBackToExitPressedOnce = false
-            override fun handleOnBackPressed() {
-             findNavController().navigate(R.id.action_orderHistoryFragment_to_mainFragment)
-            }
-        })
+        activity?.onBackPressedDispatcher?.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    findNavController().navigate(R.id.action_orderHistoryFragment_to_mainFragment)
+                }
+            })
     }
-    fun observers(){
-        historyViewModel.historyLiveData.observe(viewLifecycleOwner,{
-            binding.progressBarHistory.animate().alpha(0f).duration=1000
+
+    fun observers() {
+        historyViewModel.historyLiveData.observe(viewLifecycleOwner, {
+            binding.progressBarHistory.animate().alpha(0f).duration = 1000
             historyFragmentAdapter.submitList(it)
             historyList = it
-            Log.d(TAG,it.toString())
+            Log.d(TAG, it.toString())
             binding.recyclerViewHistory.animate().alpha(1f)
         })
 
-        historyViewModel.historyErrorLiveData.observe(viewLifecycleOwner,{
-            it?.let{
+        historyViewModel.historyErrorLiveData.observe(viewLifecycleOwner, {
+            it?.let {
                 Toast.makeText(requireActivity(), it, Toast.LENGTH_LONG).show()
-                Log.d(TAG,it)
+                Log.d(TAG, it)
                 historyViewModel.historyErrorLiveData.postValue(null)
 
             }

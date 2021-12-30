@@ -8,9 +8,6 @@
         android:id="@+id/about"
         android:title="About" />
     <item
-        android:id="@+id/profile"
-        android:title="Profile" />
-    <item
         android:id="@+id/signout"
         android:title="Sign out" />
 </menu>

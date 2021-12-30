@@ -51,8 +51,10 @@ class SpecificOrderRecyclerViewAdapter() :
     override fun getItemCount(): Int {
         return differ.currentList.size
     }
+
     fun submitList(list: List<HistoryModel>) {
-        differ.submitList(list)}
+        differ.submitList(list)
+    }
 
     class SpecificOrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTextView: TextView = itemView.findViewById(R.id.namespecific)

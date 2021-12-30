@@ -32,16 +32,13 @@ import kotlin.properties.Delegates
 private const val TAG = "CartFragment"
 
 class CartFragment : Fragment() {
-     var autogenerate = (1..1000000).random()
-    var totalAmount:Double = 0.0
+    //to generate random numbers for the order number
+    var autogenerate = (1..1000000).random()
+    var totalAmount: Double = 0.0
     private var cartList = listOf<CartModel>()
     private val cartViewModel: CartFreagmentViewModel by activityViewModels()
     private lateinit var cartFragmentAdapter: CartRecyclerViewAdapter
     private lateinit var binding: FragmentCartBinding
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,30 +48,30 @@ class CartFragment : Fragment() {
         // Inflate the layout for this fragment
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observers()
 
         cartFragmentAdapter = CartRecyclerViewAdapter(cartViewModel)
-        binding.recyclerViewCart.adapter= cartFragmentAdapter
+        binding.recyclerViewCart.adapter = cartFragmentAdapter
 
         cartViewModel.getCart()
 
 
-        }
+    }
 
-    fun observers(){
+    fun observers() {
 
-
-        cartViewModel.CartLiveData.observe(viewLifecycleOwner, Observer{
+        cartViewModel.CartLiveData.observe(viewLifecycleOwner, Observer {
             binding.progressBarCart.animate().alpha(0f)
             cartFragmentAdapter.submitList(it)
             cartList = it
             binding.confirmorder.setOnClickListener {
+                //when the list is not empty of the cart, then the order will go to order history page and the cart will be refreshed
+                if (cartList.size > 0) {
 
-                if(cartList.size > 0){
-
-                    for(item in cartList) {
+                    for (item in cartList) {
                         cartViewModel.addToHistory(item.toHistoryModel())
 
                         cartViewModel.removeFromCart(item.id)
@@ -83,44 +80,45 @@ class CartFragment : Fragment() {
                 }
                 Toast.makeText(requireActivity(), "Your order is sent", Toast.LENGTH_SHORT).show()
             }
-//            Log.d("CART LIST", cartList.size.toString())
-            if (cartList.size > 0){ /***/
+            if (cartList.size > 0) {
+                /***/
                 binding.yourcartempty.visibility = View.GONE
                 binding.confirmorder.visibility = View.VISIBLE
                 binding.totalprice.visibility = View.VISIBLE
-            }else
-            {
+            } else {
                 binding.confirmorder.visibility = View.INVISIBLE
                 binding.totalprice.visibility = View.INVISIBLE
                 binding.yourcartempty.visibility = View.VISIBLE
             }
 
             var price = 0.0
-            for(item in cartList){
-                 price = price + item.price.toInt()
+            for (item in cartList) {
+                price = price + item.price.toInt()
             }
-             totalAmount = price + price*(0.15).toDouble()
+            totalAmount = price + price * (0.15).toDouble()
             binding.totalprice.text = "Total Amount (Including VAT) : ${totalAmount.toString()} SR"
-            Log.d(TAG,it.toString())
+            Log.d(TAG, it.toString())
             binding.recyclerViewCart.animate().alpha(1f)
         })
 
-        cartViewModel.CartErrorLiveData.observe(viewLifecycleOwner,{
-            it?.let{
+        cartViewModel.CartErrorLiveData.observe(viewLifecycleOwner, {
+            it?.let {
                 Toast.makeText(requireActivity(), it, Toast.LENGTH_LONG).show()
-                Log.d(TAG,it)
+                Log.d(TAG, it)
                 cartViewModel.CartErrorLiveData.postValue(null)
 
             }
         })
 
     }
-    fun CartModel.toHistoryModel()= HistoryModel(
+
+    //to convert the data class cart to history data class
+    fun CartModel.toHistoryModel() = HistoryModel(
         description = description,
         id = id,
         image = image,
-        name = name ,
-        price = price ,
+        name = name,
+        price = price,
         userid = "${FirebaseAuth.getInstance().currentUser?.uid}",
         count = count,
         originalprice = 0,

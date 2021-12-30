@@ -26,13 +26,15 @@ class AboutFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.locationButton.setOnClickListener {
-                val gmapsIntentURI = Uri.parse("https://www.google.com/maps/place/Pew+Pew+%D8%B7%D8%AE+%D8%B7%D8%AE%E2%80%AD/@24.7723579,46.6955491,17z/data=!3m1!4b1!4m5!3m4!1s0x3e2efd180151b4ad:0x2373d137bca7bf15!8m2!3d24.7723529!4d46.6977339")
-                val mapIntent = Intent(Intent.ACTION_VIEW, gmapsIntentURI)
-                mapIntent.setPackage("com.google.android.apps.maps")
-                startActivity(mapIntent)
-            }
+            // to open google map app and lead to  the restaurant location
+            val gmapsIntentURI =
+                Uri.parse("https://www.google.com/maps/place/Pew+Pew+%D8%B7%D8%AE+%D8%B7%D8%AE%E2%80%AD/@24.7723579,46.6955491,17z/data=!3m1!4b1!4m5!3m4!1s0x3e2efd180151b4ad:0x2373d137bca7bf15!8m2!3d24.7723529!4d46.6977339")
+            val mapIntent = Intent(Intent.ACTION_VIEW, gmapsIntentURI)
+            mapIntent.setPackage("com.google.android.apps.maps")
+            startActivity(mapIntent)
         }
     }
+}
 
 
 

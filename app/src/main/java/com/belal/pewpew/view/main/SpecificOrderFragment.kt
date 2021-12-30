@@ -25,11 +25,6 @@ class SpecificOrderFragment : Fragment() {
     private val historyViewModel: OrderHistoryViewModel by activityViewModels()
     private var historyList = listOf<HistoryModel>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,26 +39,27 @@ class SpecificOrderFragment : Fragment() {
         observers()
 
         specificFragmentAdapter = SpecificOrderRecyclerViewAdapter()
-        binding.recyclerViewSpecificOrder.adapter= specificFragmentAdapter
-        var ordernumber = requireArguments().getInt("ordernumber",0)
+        binding.recyclerViewSpecificOrder.adapter = specificFragmentAdapter
+        var ordernumber = requireArguments().getInt("ordernumber", 0)
         historyViewModel.getHistoryspec(ordernumber)
     }
-    fun observers(){
-        historyViewModel.historyxlLiveData.observe(viewLifecycleOwner,{
+
+    fun observers() {
+        historyViewModel.historyxlLiveData.observe(viewLifecycleOwner, {
             it?.let {
-                binding.progressBarspecificorder.animate().alpha(0f).duration=1000
+                binding.progressBarspecificorder.animate().alpha(0f).duration = 1000
                 specificFragmentAdapter.submitList(it)
                 historyList = it
-                Log.d(TAG,it.toString())
+                Log.d(TAG, it.toString())
                 binding.recyclerViewSpecificOrder.animate().alpha(1f)
                 historyViewModel.historyxlLiveData.postValue(null)
             }
         })
 
-        historyViewModel.historyErrorLiveData.observe(viewLifecycleOwner,{
-            it?.let{
+        historyViewModel.historyErrorLiveData.observe(viewLifecycleOwner, {
+            it?.let {
                 Toast.makeText(requireActivity(), it, Toast.LENGTH_LONG).show()
-                Log.d(TAG,it)
+                Log.d(TAG, it)
                 historyViewModel.historyErrorLiveData.postValue(null)
 
             }

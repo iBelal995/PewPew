@@ -22,7 +22,11 @@ import com.belal.pewpew.view.main.SideOrderFragmentViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 
-class SideOrderRecyclerViewAdapter(val viewModel: SideOrderFragmentViewModel, val dviewModel: DescriptionViewModel,val context: Context) :
+class SideOrderRecyclerViewAdapter(
+    val viewModel: SideOrderFragmentViewModel,
+    val dviewModel: DescriptionViewModel,
+    val context: Context
+) :
     RecyclerView.Adapter<SideOrderRecyclerViewAdapter.SideOrderViewHolder>() {
 
     val DIFF_CALL_BACK = object : DiffUtil.ItemCallback<MenuModelItem>() {
@@ -98,12 +102,13 @@ class SideOrderRecyclerViewAdapter(val viewModel: SideOrderFragmentViewModel, va
         val decreaseButton: Button = itemView.findViewById(R.id.decrease)
         val quantity: TextView = itemView.findViewById(R.id.integer_number)
     }
-    fun MenuModelItem.toCartModel(count: Int)= CartModel(
+
+    fun MenuModelItem.toCartModel(count: Int) = CartModel(
         description = description,
         id = id,
         image = image,
-        name = name ,
-        price = count*price ,
+        name = name,
+        price = count * price,
         userid = "${FirebaseAuth.getInstance().currentUser?.uid}",
         count = count
     )

@@ -22,11 +22,6 @@ class AllFragment : Fragment() {
     private val dViewModel: DescriptionViewModel by activityViewModels()
     private lateinit var allFragmentAdapter: AllRecyclerVireAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,6 +37,7 @@ class AllFragment : Fragment() {
         observers()
         allFragmentAdapter = AllRecyclerVireAdapter(allViewModel,dViewModel,requireContext())
         binding.recyclerViewAll.adapter= allFragmentAdapter
+        //to get the menu
         allViewModel.callMenu()
 
     }

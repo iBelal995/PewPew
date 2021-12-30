@@ -22,7 +22,11 @@ import com.belal.pewpew.view.main.DescriptionViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 
-class BurgersRecyclerViewAdapter(val viewModel: BurgersFragmentViewModel, val dviewModel: DescriptionViewModel,val context: Context) :
+class BurgersRecyclerViewAdapter(
+    val viewModel: BurgersFragmentViewModel,
+    val dviewModel: DescriptionViewModel,
+    val context: Context
+) :
     RecyclerView.Adapter<BurgersRecyclerViewAdapter.BurgersViewHolder>() {
 
     val DIFF_CALL_BACK = object : DiffUtil.ItemCallback<MenuModelItem>() {
@@ -97,12 +101,13 @@ class BurgersRecyclerViewAdapter(val viewModel: BurgersFragmentViewModel, val dv
         val decreaseButton: Button = itemView.findViewById(R.id.decrease)
         val quantity: TextView = itemView.findViewById(R.id.integer_number)
     }
-    fun MenuModelItem.toCartModel(count: Int)= CartModel(
+
+    fun MenuModelItem.toCartModel(count: Int) = CartModel(
         description = description,
         id = id,
         image = image,
-        name = name ,
-        price = count*price ,
+        name = name,
+        price = count * price,
         userid = "${FirebaseAuth.getInstance().currentUser?.uid}",
         count = count
     )

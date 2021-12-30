@@ -43,15 +43,16 @@ class CartRecyclerViewAdapter(val viewModel: CartFreagmentViewModel) :
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
         val item = differ.currentList[position]
         var count = item.count
-        var orignalprice = item.price/count
+        var orignalprice = item.price / count
         holder.titleTextView.text = item.name
         holder.priceTextView.text = "${item.price} SR"
         Picasso.get().load(item.image).into(holder.itemImageView)
         holder.quantity.text = item.count.toString()
-        holder.deleteButton.setOnClickListener {
 
+        //to delete an item from the cart i use alertDialog to prevent user mistakes
+        holder.deleteButton.setOnClickListener {
             val alertDialog = AlertDialog
-                .Builder(holder.itemView.context,R.style.AlertDialogTheme)
+                .Builder(holder.itemView.context, R.style.AlertDialogTheme)
                 .setTitle("Delete ${item.name.uppercase()}")
                 .setMessage("Are you sure you want to delete this item?")
             alertDialog.setPositiveButton("Yes") { _, _ ->
@@ -59,11 +60,11 @@ class CartRecyclerViewAdapter(val viewModel: CartFreagmentViewModel) :
                 viewModel.removeFromCart(item.id)
 
                 val ayhaga = mutableListOf<CartModel>()
-               ayhaga.addAll(differ.currentList)
+                ayhaga.addAll(differ.currentList)
                 ayhaga.remove(item)
                 differ.submitList(ayhaga)
             }
-        alertDialog.setNegativeButton("No") { dialog, _ ->
+            alertDialog.setNegativeButton("No") { dialog, _ ->
                 dialog.cancel()
             }
             alertDialog.create().show()
@@ -72,8 +73,8 @@ class CartRecyclerViewAdapter(val viewModel: CartFreagmentViewModel) :
         holder.increaseButton.setOnClickListener {
             count++
             holder.quantity.text = count.toString()
-            holder.priceTextView.text = "${orignalprice*count } SR"
-            item.price = orignalprice*count
+            holder.priceTextView.text = "${orignalprice * count} SR"
+            item.price = orignalprice * count
             item.count = count
             viewModel.updateCart(item)
 
@@ -82,8 +83,8 @@ class CartRecyclerViewAdapter(val viewModel: CartFreagmentViewModel) :
             if (count > 1) {
                 count--
                 holder.quantity.text = count.toString()
-                holder.priceTextView.text = "${orignalprice*count } SR"
-                item.price = orignalprice*count
+                holder.priceTextView.text = "${orignalprice * count} SR"
+                item.price = orignalprice * count
                 item.count = count
                 viewModel.updateCart(item)
 
@@ -97,9 +98,11 @@ class CartRecyclerViewAdapter(val viewModel: CartFreagmentViewModel) :
     override fun getItemCount(): Int {
         return differ.currentList.size
     }
+
     fun submitList(list: List<CartModel>) {
         differ.submitList(list)
     }
+
     class CartViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTextView: TextView = itemView.findViewById(R.id.ordernumber)
         val priceTextView: TextView = itemView.findViewById(R.id.priceTextView)

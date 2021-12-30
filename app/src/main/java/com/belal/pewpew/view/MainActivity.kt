@@ -102,48 +102,49 @@ class MainActivity : AppCompatActivity() {
         And currently running NavHostFragment directly deal with maintaining back-stack,
         action bar, toolbar, navigation drawer icon, etc
          * */
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController
-        NavigationUI.setupWithNavController(binding.bottomNavView,navController)
+        NavigationUI.setupWithNavController(binding.bottomNavView, navController)
         notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         binding.settingButton.setOnClickListener {
-             val popupMenu: PopupMenu = PopupMenu(this,binding.settingButton)
-            popupMenu.menuInflater.inflate(R.menu.settingmenu,popupMenu.menu)
+            val popupMenu: PopupMenu = PopupMenu(this, binding.settingButton)
+            popupMenu.menuInflater.inflate(R.menu.settingmenu, popupMenu.menu)
             popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
-                when(item.itemId) {
-                    R.id.signout ->{
+                when (item.itemId) {
+                    //to sign out from the account
+                    R.id.signout -> {
                         val alertDialog = AlertDialog
-                .Builder(this,R.style.AlertDialogTheme)
-                .setTitle("Sign Out")
-                .setMessage("Are you sure you want to Sign Out")
-            alertDialog.setPositiveButton("Yes") { _, _ ->
-                sharedPref = this.getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
-                sharedPrefEditor = sharedPref.edit()
-                sharedPrefEditor.putBoolean("state", false)
-                sharedPrefEditor.commit()
-                FirebaseAuth.getInstance().signOut()
-                Toast.makeText(this@MainActivity, "signed out", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this, LoginActivity::class.java))
-                finish()
+                            .Builder(this, R.style.AlertDialogTheme)
+                            .setTitle("Sign Out")
+                            .setMessage("Are you sure you want to Sign Out")
+                        alertDialog.setPositiveButton("Yes") { _, _ ->
+                            sharedPref =
+                                this.getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
+                            sharedPrefEditor = sharedPref.edit()
+                            sharedPrefEditor.putBoolean("state", false)
+                            sharedPrefEditor.commit()
+                            FirebaseAuth.getInstance().signOut()
+                            Toast.makeText(this@MainActivity, "signed out", Toast.LENGTH_SHORT)
+                                .show()
+                            startActivity(Intent(this, LoginActivity::class.java))
+                            finish()
+                        }
+                        alertDialog.setNegativeButton("No") { dialog, _ ->
+                            dialog.cancel()
+                        }
 
-            }
+                        alertDialog.create().show()
 
-            alertDialog.setNegativeButton("No") { dialog, _ ->
-                dialog.cancel()
-            }
-
-            alertDialog.create().show()
-
-        }
-
-
-
-                    R.id.about ->{
-                        val fragment = navHostFragment.childFragmentManager.primaryNavigationFragment
-                        when(fragment){
-                            is MainFragment ->  navController.navigate(R.id.action_mainFragment_to_aboutFragment)
-                            is CartFragment ->  navController.navigate(R.id.action_cartFrgament_to_about)
+                    }
+                    // to navigate the user to the about fragment  wherever he is in the app
+                    R.id.about -> {
+                        val fragment =
+                            navHostFragment.childFragmentManager.primaryNavigationFragment
+                        when (fragment) {
+                            is MainFragment -> navController.navigate(R.id.action_mainFragment_to_aboutFragment)
+                            is CartFragment -> navController.navigate(R.id.action_cartFrgament_to_about)
                             is SideOrderFragment -> navController.navigate(R.id.action_sideOrderFragment_to_about)
                             is AllFragment -> navController.navigate(R.id.action_allFragment_to_about)
                             is BurgersFragment -> navController.navigate(R.id.action_burgersFragment_to_about)
@@ -151,16 +152,17 @@ class MainActivity : AppCompatActivity() {
                             is OrderHistoryFragment -> navController.navigate(R.id.action_orderHistoryFragment_to_about)
                             is AllDoneFragment -> navController.navigate(R.id.action_allDoneFragment_to_about)
                             is SpecificOrderFragment -> navController.navigate(R.id.action_specificOrderFragment_to_about)
-                            is ProfileFragment -> navController.navigate(R.id.action_profileFragment_to_about)
 
                         }
                         Log.d("belal", "onCreate: ${fragment.toString()}")
                     }
-                    R.id.orderhistory->{
-                        val fragment = navHostFragment.childFragmentManager.primaryNavigationFragment
-                        when(fragment){
-                            is MainFragment ->  navController.navigate(R.id.action_mainFragment_to_orderHistoryFragment)
-                            is CartFragment ->  navController.navigate(R.id.action_cartFrgament_to_orderHistoryFragment)
+                    // to navigate the user to the orderhistory fragment  wherever he is in the app
+                    R.id.orderhistory -> {
+                        val fragment =
+                            navHostFragment.childFragmentManager.primaryNavigationFragment
+                        when (fragment) {
+                            is MainFragment -> navController.navigate(R.id.action_mainFragment_to_orderHistoryFragment)
+                            is CartFragment -> navController.navigate(R.id.action_cartFrgament_to_orderHistoryFragment)
                             is SideOrderFragment -> navController.navigate(R.id.action_sideOrderFragment_to_orderHistoryFragment)
                             is AllFragment -> navController.navigate(R.id.action_allFragment_to_orderHistoryFragment)
                             is BurgersFragment -> navController.navigate(R.id.action_burgersFragment_to_orderHistoryFragment)
@@ -168,63 +170,40 @@ class MainActivity : AppCompatActivity() {
                             is AboutFragment -> navController.navigate(R.id.action_about_to_orderHistoryFragment)
                             is AllDoneFragment -> navController.navigate(R.id.action_allDoneFragment_to_orderHistoryFragment)
                             is SpecificOrderFragment -> navController.navigate(R.id.action_specificOrderFragment_to_orderHistoryFragment)
-                            is ProfileFragment -> navController.navigate(R.id.action_profileFragment_to_orderHistoryFragment)
 
                         }
                     }
-                    R.id.profile->{
-                        val fragment = navHostFragment.childFragmentManager.primaryNavigationFragment
-                        when(fragment){
-                            is MainFragment ->  navController.navigate(R.id.action_mainFragment_to_profileFragment)
-                            is CartFragment ->  navController.navigate(R.id.action_cartFrgament_to_profileFragment)
-                            is SideOrderFragment -> navController.navigate(R.id.action_sideOrderFragment_to_profileFragment)
-                            is AllFragment -> navController.navigate(R.id.action_allFragment_to_profileFragment)
-                            is BurgersFragment -> navController.navigate(R.id.action_burgersFragment_to_profileFragment)
-                            is DescriptionFragment -> navController.navigate(R.id.action_descriptionFragment_to_profileFragment)
-                            is AboutFragment -> navController.navigate(R.id.action_about_to_profileFragment)
-                            is AllDoneFragment -> navController.navigate(R.id.action_allDoneFragment_to_profileFragment)
-                            is SpecificOrderFragment -> navController.navigate(R.id.action_specificOrderFragment_to_orderHistoryFragment)
-                            is OrderHistoryFragment -> navController.navigate(R.id.action_orderHistoryFragment_to_profileFragment)
-                        }
-                    }
-
                 }
                 true
             })
             popupMenu.show()
         }
 
-
-
         if (Build.VERSION.SDK_INT >= 21) {
             window.navigationBarColor =
                 this.resources.getColor(R.color.colororange) // this is for the navigation bar color of the android system
         }
-
-        allDoneViewModel.timeLiveData.observe(this,{ it
-
+// to observe the remaining time in the alldone fragment and then notify the user that the order is done
+        allDoneViewModel.timeLiveData.observe(this, {
+            it
             it?.let {
                 handler = Handler()
                 handler.postDelayed({
                     notifi()
                     allDoneViewModel.timeLiveData.postValue(null)
-
                 }, it.toLong())
             }
         })
 
     }
-    // If you want to back to the last fragment from where you come here just user the navigateUp method of NavController
 
-    override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp() || super.onSupportNavigateUp()
-    }
-    fun notifi (){
+
+    fun notifi() {
         // checking if android version is greater than oreo(API 26) or not
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            notificationChannel = NotificationChannel(channelId, description, NotificationManager.IMPORTANCE_HIGH)
+            notificationChannel =
+                NotificationChannel(channelId, description, NotificationManager.IMPORTANCE_HIGH)
             notificationChannel.enableLights(true)
-//            notificationChannel.lightColor = Color.GREEN
             notificationChannel.enableVibration(true)
             notificationManager.createNotificationChannel(notificationChannel)
 
@@ -242,4 +221,4 @@ class MainActivity : AppCompatActivity() {
         allDoneViewModel.timeLiveData.postValue(null)
         notificationManager.notify(1234, builder.build())
     }
-    }
+}

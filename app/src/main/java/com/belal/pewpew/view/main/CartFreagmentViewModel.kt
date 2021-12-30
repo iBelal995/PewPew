@@ -13,14 +13,14 @@ import kotlinx.coroutines.launch
 
 private const val TAG = "CartViewModel"
 
-class CartFreagmentViewModel:ViewModel() {
+class CartFreagmentViewModel : ViewModel() {
     val CartLiveData = MutableLiveData<List<CartModel>>()
     val CartLiveDataS = MutableLiveData<String>()
     val CartErrorLiveData = MutableLiveData<String>()
     val historyxlLiveData = MutableLiveData<HistoryModel>()
     val historyErrorLiveData = MutableLiveData<String>()
     private val apiService = ApiServicesRepository.get()
-    val userid:String = FirebaseAuth.getInstance().currentUser?.uid ?: "Error"
+    val userid: String = FirebaseAuth.getInstance().currentUser?.uid ?: "Error"
     fun getCart() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
@@ -39,11 +39,13 @@ class CartFreagmentViewModel:ViewModel() {
 
             } catch (e: Exception) {
                 Log.d(TAG, e.message.toString())
-                CartErrorLiveData.postValue(e.message.toString())
+                CartErrorLiveData.postValue("Please make sure you are connected to the internet")
             }
         }
     }
-    fun removeFromCart(id:String) {
+
+    //to remove an item from the cart
+    fun removeFromCart(id: String) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
 
@@ -62,19 +64,21 @@ class CartFreagmentViewModel:ViewModel() {
 
             } catch (e: Exception) {
                 Log.d(TAG, e.message.toString())
-                CartErrorLiveData.postValue(e.message.toString())
+                CartErrorLiveData.postValue("Please make sure you are connected to the internet")
             }
         }
     }
+
+    // to be able to change the quantity from the cart page
     fun updateCart(item: CartModel) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
 
-                val response = apiService.updateCart(item.id,item)
+                val response = apiService.updateCart(item.id, item)
                 if (response.isSuccessful) {
                     response.body()?.run {
                         Log.d(TAG, response.body().toString())
-                            getCart()
+                        getCart()
                     }
                 } else {
                     Log.d(TAG, response.message())
@@ -82,29 +86,31 @@ class CartFreagmentViewModel:ViewModel() {
                 }
             } catch (e: Exception) {
                 Log.d(TAG, e.message.toString())
-                CartErrorLiveData.postValue(e.message.toString())
+                CartErrorLiveData.postValue("Please make sure you are connected to the internet")
             }
         }
     }
-    fun addToHistory(item: HistoryModel){
+
+    // to add the current cart list to the order history list
+    fun addToHistory(item: HistoryModel) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
 
                 val response = apiService.addToHistory(item)
-                if(response.isSuccessful){
+                if (response.isSuccessful) {
                     response.body()?.run {
-                        Log.d(TAG,response.body().toString())
+                        Log.d(TAG, response.body().toString())
                         historyxlLiveData.postValue(this)
                     }
-                }else{
-                    Log.d(TAG,response.message())
+                } else {
+                    Log.d(TAG, response.message())
                     historyErrorLiveData.postValue(response.message())
 
                 }
 
-            }catch (e: Exception){
+            } catch (e: Exception) {
                 Log.d(TAG, e.message.toString())
-                historyErrorLiveData.postValue(e.message.toString())
+                historyErrorLiveData.postValue("Please make sure you are connected to the internet")
             }
         }
     }

@@ -20,6 +20,7 @@ class Splash : AppCompatActivity() {
             window.navigationBarColor =
                 this.resources.getColor(R.color.colororange) // this is for the navigation bar color of the android system
         }
+        // use the handler to delay the start up of the app
         handler = Handler()
         handler.postDelayed({
             // Delay and Start Activity
@@ -28,7 +29,7 @@ class Splash : AppCompatActivity() {
                 startActivity(intent)
                 finish()
 
-        } , 500) // here we're delaying to startActivity after 3seconds
+        } , 500) // here we're delaying to startActivity after  half seconds
     }
 
 }

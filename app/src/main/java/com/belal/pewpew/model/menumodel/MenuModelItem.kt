@@ -2,9 +2,8 @@ package com.belal.pewpew.model.menumodel
 
 
 import com.google.gson.annotations.SerializedName
-/**
- * Serializers: A serializer allows to convert a Json string to corresponding Kotlin Model or objects.
- * */
+
+//this is the menu component needed
 data class MenuModelItem(
     @SerializedName("Description")
     val description: String,

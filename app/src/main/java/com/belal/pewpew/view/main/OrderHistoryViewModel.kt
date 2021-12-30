@@ -16,56 +16,57 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 private const val TAG = "OrderHistoryViewModel"
-class OrderHistoryViewModel:ViewModel() {
+
+class OrderHistoryViewModel : ViewModel() {
     private val apiService = ApiServicesRepository.get()
     val historyLiveData = MutableLiveData<List<HistoryModel>>()
     val historyxlLiveData = MutableLiveData<List<HistoryModel>>()
     val historyErrorLiveData = MutableLiveData<String>()
-    var selectedItem = MutableLiveData<HistoryModel>()
-    val userid:String = FirebaseAuth.getInstance().currentUser?.uid ?: "Error"
+    val userid: String = FirebaseAuth.getInstance().currentUser?.uid ?: "Error"
 
 
-    fun callHistory(){
+    fun callHistory() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
 
                 val response = apiService.getHistory(userid)
-                if(response.isSuccessful){
+                if (response.isSuccessful) {
                     response.body()?.run {
-                        Log.d(TAG,response.body().toString())
+                        Log.d(TAG, response.body().toString())
                         historyLiveData.postValue(this)
                     }
-                }else{
-                    Log.d(TAG,response.message())
+                } else {
+                    Log.d(TAG, response.message())
                     historyErrorLiveData.postValue(response.message())
 
                 }
 
-            }catch (e: Exception){
+            } catch (e: Exception) {
                 Log.d(TAG, e.message.toString())
-                historyErrorLiveData.postValue(e.message.toString())
+                historyErrorLiveData.postValue("Please make sure you are connected to the internet")
             }
         }
     }
-    fun getHistoryspec(ordernumber:Int){
+
+    fun getHistoryspec(ordernumber: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
 
                 val response = apiService.getHistorySpec(ordernumber)
-                if(response.isSuccessful){
+                if (response.isSuccessful) {
                     response.body()?.run {
-                        Log.d(TAG,response.body().toString())
+                        Log.d(TAG, response.body().toString())
                         historyxlLiveData.postValue(this)
                     }
-                }else{
-                    Log.d(TAG,response.message())
+                } else {
+                    Log.d(TAG, response.message())
                     historyErrorLiveData.postValue(response.message())
 
                 }
 
-            }catch (e: Exception){
+            } catch (e: Exception) {
                 Log.d(TAG, e.message.toString())
-                historyErrorLiveData.postValue(e.message.toString())
+                historyErrorLiveData.postValue("Please make sure you are connected to the internet")
             }
         }
     }

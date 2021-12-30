@@ -8,69 +8,58 @@ import retrofit2.Response
 import retrofit2.http.*
 
 interface pewpewApi {
-    /***
-     * REQUEST METHOD
-    Every method must have an HTTP annotation that provides the request method and relative URL.
-    There are eight built-in annotations: HTTP, GET, POST, PUT, PATCH, DELETE, OPTIONS and HEAD.
-    The relative URL of the resource is specified in the annotation.
-     * */
 
-
-    /** Authorization
-     * As a security measure,
-     * most API access points require users to provide an authentication
-     * token that can be used to verify the identity of the user making the request so as to grant
-     * them access to data/ resources from the backend. The client app usually fetches the token upon successful login
-     * or registration then saves the token locally and appends it to subsequent requests
-     * so that the server can authenticate the user.
-     * */
-    /***
-     * Query parameters are added with the @Query annotation on a method parameter.
-     * They are automatically added at the end of the URL.
-     * */
-
+    // to get the all menu from the mockApi
     @GET("/menu")
     suspend fun getMenu(
-    ):Response<List<MenuModelItem>>
+    ): Response<List<MenuModelItem>>
 
+    //to get specific category menu from mockApi
     @GET("/menu")
     suspend fun getMenu(
-        @Query("type") type:String
-    ):Response<List<MenuModelItem>>
+        @Query("type") type: String
+    ): Response<List<MenuModelItem>>
 
+    //to add item from the menu Api to Cart Api
     @POST("/cart")
     suspend fun addToCart(
-      @Body item:CartModel
-    ):Response<CartModel>
+        @Body item: CartModel
+    ): Response<CartModel>
 
+    //to get the cart Api depends on the user id
     @GET("/cart")
     suspend fun getCart(
-        @Query("userid") usreid:String
-    ):Response<List<CartModel>>
+        @Query("userid") usreid: String
+    ): Response<List<CartModel>>
 
+    //to delete an item from the cart Api according to it's id
     @DELETE("/cart/{id}")
     suspend fun removeFromCart(
-    @Path("id")  id: String
-    ):Response<ResponseBody>
+        @Path("id") id: String
+    ): Response<ResponseBody>
 
+    //to make any changes or updates in the cart Api such as changing the quantity
     @PUT("/cart/{id}")
     suspend fun updateCart(
-        @Path("id") id:String,
-        @Body item:CartModel
-    ):Response<CartModel>
+        @Path("id") id: String,
+        @Body item: CartModel
+    ): Response<CartModel>
 
+    //to add the order from the cart to the history page
     @POST("/history")
     suspend fun addTohistory(
-        @Body item:HistoryModel
-    ):Response<HistoryModel>
+        @Body item: HistoryModel
+    ): Response<HistoryModel>
 
+    //to get the history Api according to the user id
     @GET("/history")
     suspend fun getHistory(
-        @Query("userid") userid:String
-    ):Response<List<HistoryModel>>
+        @Query("userid") userid: String
+    ): Response<List<HistoryModel>>
 
+    // to get the order history according to the  ordernumber
     @GET("/history")
     suspend fun getHistoryspec(
-        @Query("ordernumber") ordernumber:Int
-    ):Response<List<HistoryModel>>
+        @Query("ordernumber") ordernumber: Int
+    ): Response<List<HistoryModel>>
 }

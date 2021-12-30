@@ -19,7 +19,8 @@ import java.text.SimpleDateFormat
 
 const val TAG1 = "ADAPTERhistory"
 private var historyList = listOf<HistoryModel>()
-class HistoryRecyclerViewAdapter(val viewmodel:OrderHistoryViewModel) :
+
+class HistoryRecyclerViewAdapter(val viewmodel: OrderHistoryViewModel) :
     RecyclerView.Adapter<HistoryRecyclerViewAdapter.HistoryViewHolder>() {
     val bundle = Bundle()
     val DIFF_CALL_BACK = object : DiffUtil.ItemCallback<HistoryModel>() {
@@ -44,6 +45,7 @@ class HistoryRecyclerViewAdapter(val viewmodel:OrderHistoryViewModel) :
             )
         )
     }
+
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
         val item = differ.currentList[position]
         Log.d(TAG1, item.name)
@@ -51,21 +53,24 @@ class HistoryRecyclerViewAdapter(val viewmodel:OrderHistoryViewModel) :
         holder.date.text = SimpleDateFormat("MM/dd/yy hh:mm aaa").format(item.date).toString()
         holder.priceTextView.text = "Total price:(including Tax) ${item.totalprice} SR"
         holder.itemView.setOnClickListener {
-            bundle.putInt("ordernumber",item.ordernumber)
-            it.findNavController().navigate(R.id.action_orderHistoryFragment_to_specificOrderFragment,bundle)
+            bundle.putInt("ordernumber", item.ordernumber)
+            it.findNavController()
+                .navigate(R.id.action_orderHistoryFragment_to_specificOrderFragment, bundle)
         }
     }
 
     override fun getItemCount(): Int {
         return differ.currentList.size
     }
+
     fun submitList(list: List<HistoryModel>) {
         /** distinctBy
-Returns a sequence containing only elements from the given sequence having distinct keys returned by the given selector function.
-Among elements of the given sequence with equal keys, only the first one will be present in the resulting sequence.
- The elements in the resulting sequence are in the same order as they were in the source sequence.*/
+        Returns a sequence containing only elements from the given sequence having distinct keys returned by the given selector function.
+        Among elements of the given sequence with equal keys, only the first one will be present in the resulting sequence.
+        The elements in the resulting sequence are in the same order as they were in the source sequence.*/
         differ.submitList(list.distinctBy { it.ordernumber })
     }
+
     class HistoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val orderNumber: TextView = itemView.findViewById(R.id.ordernumber)
         val priceTextView: TextView = itemView.findViewById(R.id.priceTextView)

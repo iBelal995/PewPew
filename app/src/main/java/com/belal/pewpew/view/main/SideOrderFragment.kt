@@ -27,6 +27,7 @@ class SideOrderFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,27 +36,29 @@ class SideOrderFragment : Fragment() {
         // Inflate the layout for this fragment
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observers()
-        sideOrderFragmentAdapter = SideOrderRecyclerViewAdapter(sideOrderViewModel,dViewModel,requireContext())
-        binding.recyclerViewSideOrder.adapter= sideOrderFragmentAdapter
+        sideOrderFragmentAdapter =
+            SideOrderRecyclerViewAdapter(sideOrderViewModel, dViewModel, requireContext())
+        binding.recyclerViewSideOrder.adapter = sideOrderFragmentAdapter
         sideOrderViewModel.callMenu()
     }
 
-    fun observers(){
-        sideOrderViewModel.menuLiveData.observe(viewLifecycleOwner,{
-            binding.progressBarSideOrder.animate().alpha(0f).duration=1000
+    fun observers() {
+        sideOrderViewModel.menuLiveData.observe(viewLifecycleOwner, {
+            binding.progressBarSideOrder.animate().alpha(0f).duration = 1000
             sideOrderFragmentAdapter.submitList(it)
             menuList = it
-            Log.d(TAG,it.toString())
+            Log.d(TAG, it.toString())
             binding.recyclerViewSideOrder.animate().alpha(1f)
         })
 
-        sideOrderViewModel.menuErrorLiveData.observe(viewLifecycleOwner,{
-            it?.let{
+        sideOrderViewModel.menuErrorLiveData.observe(viewLifecycleOwner, {
+            it?.let {
                 Toast.makeText(requireActivity(), it, Toast.LENGTH_LONG).show()
-                Log.d(TAG,it)
+                Log.d(TAG, it)
                 sideOrderViewModel.menuErrorLiveData.postValue(null)
             }
         })

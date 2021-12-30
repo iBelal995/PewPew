@@ -22,9 +22,9 @@ import com.squareup.picasso.Picasso
 import java.util.Observer
 
 private lateinit var binding: FragmentDescriptionBinding
+
 class DescriptionFragment : Fragment() {
 
-    private var menuList = listOf<MenuModelItem>()
 
     private val dViewModel: DescriptionViewModel by activityViewModels()
     override fun onCreateView(
@@ -38,7 +38,7 @@ class DescriptionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.progressBardes.animate().alpha(0f).duration=1000
+        binding.progressBardes.animate().alpha(0f).duration = 1000
         dViewModel.selectedItemId.observe(viewLifecycleOwner,
             androidx.lifecycle.Observer {
                 Picasso.get().load(it.image).into(binding.itemImage)

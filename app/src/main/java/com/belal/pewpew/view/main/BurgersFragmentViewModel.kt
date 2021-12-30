@@ -20,11 +20,11 @@ class BurgersFragmentViewModel : ViewModel() {
     val menuErrorLiveData = MutableLiveData<String>()
     val CartLiveData = MutableLiveData<CartModel>()
     val CartErrorLiveData = MutableLiveData<String>()
-    var selectedItemId = MutableLiveData<MenuModelItem>()
+
     fun callMenu() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-
+                //to get the burger menu specifically
                 val response = apiService.getMenu("burger")
                 if (response.isSuccessful) {
                     response.body()?.run {
@@ -39,29 +39,30 @@ class BurgersFragmentViewModel : ViewModel() {
 
             } catch (e: Exception) {
                 Log.d(TAG, e.message.toString())
-                menuErrorLiveData.postValue(e.message.toString())
+                menuErrorLiveData.postValue("Please make sure you are connected to the internet")
             }
         }
     }
-    fun addToCart(item: CartModel){
+
+    fun addToCart(item: CartModel) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
 
                 val response = apiService.addToCart(item)
-                if(response.isSuccessful){
+                if (response.isSuccessful) {
                     response.body()?.run {
-                        Log.d(TAG,response.body().toString())
+                        Log.d(TAG, response.body().toString())
                         CartLiveData.postValue(this)
                     }
-                }else{
-                    Log.d(TAG,response.message())
+                } else {
+                    Log.d(TAG, response.message())
                     CartErrorLiveData.postValue(response.message())
 
                 }
 
-            }catch (e: Exception){
+            } catch (e: Exception) {
                 Log.d(TAG, e.message.toString())
-                CartErrorLiveData.postValue(e.message.toString())
+                CartErrorLiveData.postValue("Please make sure you are connected to the internet")
             }
         }
     }

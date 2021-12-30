@@ -3,7 +3,7 @@ package com.belal.pewpew.model
 
 import com.google.gson.annotations.SerializedName
 import java.util.*
-
+//this is the history component needed
 data class HistoryModel(
     @SerializedName("count")
     val count: Int,

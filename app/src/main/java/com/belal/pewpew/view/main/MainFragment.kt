@@ -20,38 +20,42 @@ class MainFragment : Fragment() {
     val bundle = Bundle()
     private lateinit var binding: FragmentMainBinding
     private val dViewModel: DescriptionViewModel by activityViewModels()
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMainBinding.inflate(inflater, container, false)
-        // Inflate the layout for this fragment
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bundle.putBoolean("type",true)
+        bundle.putBoolean("type", true)
+        /*to make a double back press and let the user know that he pressed the back button
+        after confirm the back with double click it will exit the app */
+        activity?.onBackPressedDispatcher?.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                private var doubleBackToExitPressedOnce = false
+                override fun handleOnBackPressed() {
+                    if (doubleBackToExitPressedOnce) {
+                        requireActivity().finish()
+                        return
+                    }
 
-        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
-            private var doubleBackToExitPressedOnce = false
-            override fun handleOnBackPressed() {
-                if (doubleBackToExitPressedOnce) {
-                    requireActivity().finish()
-                    return
+                    this.doubleBackToExitPressedOnce = true
+                    Toast.makeText(
+                        requireActivity(),
+                        "Please click BACK again to exit",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    Handler(Looper.getMainLooper()).postDelayed(Runnable {
+                        doubleBackToExitPressedOnce = false
+                    }, 2000)
                 }
-
-                this.doubleBackToExitPressedOnce = true
-                Toast.makeText(requireActivity(), "Please click BACK again to exit", Toast.LENGTH_SHORT).show()
-
-                Handler(Looper.getMainLooper()).postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
-            }
-        })
+            })
         binding.All.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_allFragment)
         }
@@ -73,7 +77,7 @@ class MainFragment : Fragment() {
                     "burger"
                 )
             )
-            findNavController().navigate(R.id.action_mainFragment_to_descriptionFragment,bundle)
+            findNavController().navigate(R.id.action_mainFragment_to_descriptionFragment, bundle)
         }
         binding.oldfashburgerImage.setOnClickListener {
             dViewModel.selectedItemId.postValue(
@@ -86,7 +90,7 @@ class MainFragment : Fragment() {
                     "burger"
                 )
             )
-            findNavController().navigate(R.id.action_mainFragment_to_descriptionFragment,bundle)
+            findNavController().navigate(R.id.action_mainFragment_to_descriptionFragment, bundle)
         }
         binding.pewpewburgerimage.setOnClickListener {
             dViewModel.selectedItemId.postValue(
@@ -99,7 +103,7 @@ class MainFragment : Fragment() {
                     "burger"
                 )
             )
-            findNavController().navigate(R.id.action_mainFragment_to_descriptionFragment,bundle)
+            findNavController().navigate(R.id.action_mainFragment_to_descriptionFragment, bundle)
         }
     }
 

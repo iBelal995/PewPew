@@ -3,7 +3,7 @@ package com.belal.pewpew.model
 
 import com.google.gson.annotations.SerializedName
 import java.util.*
-
+//this is the cart component needed
 data class CartModel(
     @SerializedName("Description")
     val description: String,

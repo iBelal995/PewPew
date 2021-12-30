@@ -19,6 +19,7 @@ private lateinit var sharedPref: SharedPreferences
 private lateinit var sharedPrefEditor: SharedPreferences.Editor
 var SHARED_PREF_FILE = "pref"
 private const val TAG = "prefffff"
+
 class LoginActivity : AppCompatActivity() {
 
 
@@ -32,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
         val passwordEditText: EditText = findViewById(R.id.password_EditText)
         val loginButton: Button = findViewById(R.id.login_button)
         val RegisterTextView: TextView = findViewById(R.id.register_TextView)
-        val resetpassword:TextView = findViewById(R.id.forgetpassword)
+        val resetpassword: TextView = findViewById(R.id.forgetpassword)
 
 
 
@@ -40,27 +41,14 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, RegisterActivity::class.java))
 
         }
-        /*
-           * what can SharedPreferences do?
-           * SharedPreferences offers a framework to save persistent data in key-value pairs.
-           * It works for any primitive data type (meaning booleans, ints, longs, floats, and strings).
-           * Which also means that it’s pretty simple to work with.
-           * */
-        /**
-         * Calling getSharedPreferences() enables you to retrieve a file by name,
-         * which means you can have multiple files.
-         * */
-        /*
-        * Read from SharedPreferences
-        * Reading a value is straightforward. You just need to call the relevant get method (again).
-        * So, calling getBoolean() will return the Boolean value associated with that key.
-        * */
+
+        // if the user already logged in it will go automatically into home page
         sharedPref = this.getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
-        if (sharedPref.getBoolean("state", false)){
+        if (sharedPref.getBoolean("state", false)) {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
-            Log.d(TAG,sharedPref.getBoolean("state", true).toString())
+            Log.d(TAG, sharedPref.getBoolean("state", true).toString())
         }
 
         loginButton.setOnClickListener() {
@@ -76,7 +64,9 @@ class LoginActivity : AppCompatActivity() {
                             val intent = Intent(this, MainActivity::class.java)
                             intent.putExtra("UserId", FirebaseAuth.getInstance().currentUser!!.uid)
                             intent.putExtra("Email", FirebaseAuth.getInstance().currentUser!!.email)
-                            sharedPref = this.getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
+                            // Creating SharedPreferences file to retrieve a file by name
+                            sharedPref =
+                                this.getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
                             sharedPrefEditor = sharedPref.edit()
                             sharedPrefEditor.putBoolean("state", true)
                             sharedPrefEditor.commit()
@@ -97,9 +87,9 @@ class LoginActivity : AppCompatActivity() {
         }
         resetpassword.setOnClickListener() {
             val intent = Intent(this, ForgetPasswordActivity::class.java)
-                startActivity(intent)
-        }
-
+            startActivity(intent)
+            finish()
         }
     }
+}
 
