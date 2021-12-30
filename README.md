@@ -82,7 +82,8 @@ Pew Pew is a mobile app that is used for ordering delicious food online .
 * Search bar: You can search burgers by name.
 * Tracking system: You can track where and when your food will be ready and arrive to you.
 * Delivery: You may choose a precise place for your delicious food, and it will be delivered to you.
-* Profile: Create profile page for the user. 
+* Profile: Create profile page for the user.
+* Advertisement: advertisement page will be displayed in the home page for any future investment. 
 
 
 
